@@ -30,11 +30,17 @@ async def get_current_user(token: str = Depends(oauth2_scheme), db: Session = De
         headers={"WWW-Authenticate": "Bearer"},
     )
     try:
+        print("Decoding token...")
         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
         username: str = payload.get("sub")  # Getting the 'sub' (subject) field which is the email or ID
+        print(f"Decoded token: {payload}")
+        print(f"Username: {username}")
         if username is None:
             raise credentials_exception
     except JWTError:
+        raise credentials_exception
+    except Exception as e:
+        print(f"Error decoding token: {e}")
         raise credentials_exception
 
     # Query the user from the database using the username (which is the email)

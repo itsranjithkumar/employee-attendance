@@ -15,7 +15,6 @@ SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
 
 # Add this get_db function
-@contextmanager
 def get_db():
     db = SessionLocal()
     try:
