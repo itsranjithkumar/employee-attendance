@@ -15,6 +15,10 @@ JWT token-based authentication for secure session management.
 
 
 
+
+
+
+
 2. ⏰ Daily Attendance Management
 Start Day / End Day Button
 
@@ -30,6 +34,11 @@ Optional: Log break times separately.
 
 
 
+
+
+
+
+
 3. 📅 Leave Management
 Employees can apply for:
 
@@ -42,6 +51,10 @@ Work From Home
 Admin can approve/reject leave requests.
 
 Leave balance tracker for each employee.
+
+
+
+
 
 
 
@@ -68,12 +81,20 @@ Generate reports
 
 
 
+
+
+
+
 5. 📅 Calendar View
 View attendance and leaves on a calendar.
 
 Highlights:
 
 Present (🟢), Absent (🔴), Leave (🟡)
+
+
+
+
 
 
 6. 👨‍💼 Admin Features
@@ -84,6 +105,11 @@ Monitor daily logs
 View and edit attendance manually if needed
 
 Announcements / Notices
+
+
+
+
+
 
 
 
