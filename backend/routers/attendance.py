@@ -22,7 +22,8 @@ def start_day(data: AttendanceStart, db: Session = Depends(get_db), current_user
     attendance = Attendance(
         employee_id=current_user.id,
         start_time=datetime.utcnow(),
-        work_summary=data.work_summary
+        work_summary=data.work_summary,
+        date=today
     )
     db.add(attendance)
     db.commit()
