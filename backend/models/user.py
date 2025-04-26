@@ -13,3 +13,14 @@ class User(Base):
 
     # Relationship to Attendance model
     attendance = relationship("Attendance", back_populates="employee")
+    # Relationship to LeaveRequest model
+    leave_requests = relationship(
+        "LeaveRequest",
+        back_populates="employee",
+        foreign_keys="LeaveRequest.employee_id"
+    )
+
+    # Leave balances
+    casual_leave_balance = Column(Integer, default=12)  # Example: 12 per year
+    sick_leave_balance = Column(Integer, default=8)    # Example: 8 per year
+    wfh_balance = Column(Integer, default=10)          # Example: 10 per year
