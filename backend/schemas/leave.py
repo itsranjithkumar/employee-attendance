@@ -4,9 +4,9 @@ from enum import Enum
 from typing import Optional
 
 class LeaveType(str, Enum):
-    CASUAL = "Casual"
-    SICK = "Sick"
-    WFH = "Work From Home"
+    CASUAL = "CASUAL"
+    SICK = "SICK"
+    WFH = "WFH"
 
 class LeaveStatus(str, Enum):
     PENDING = "Pending"

@@ -5,9 +5,9 @@ from datetime import datetime
 import enum
 
 class LeaveType(enum.Enum):
-    CASUAL = "Casual"
-    SICK = "Sick"
-    WFH = "Work From Home"
+    CASUAL = "CASUAL"
+    SICK = "SICK"
+    WFH = "WFH"
 
 class LeaveStatus(enum.Enum):
     PENDING = "Pending"
