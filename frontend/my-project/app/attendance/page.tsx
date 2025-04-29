@@ -16,6 +16,9 @@ export default function AttendancePage() {
   const [workSummary, setWorkSummary] = useState("");
   const [showWorkSummary, setShowWorkSummary] = useState(false);
   const [authError, setAuthError] = useState("");
+  const [startTime, setStartTime] = useState<Date | null>(null);
+  const [endTime, setEndTime] = useState<Date | null>(null);
+  const [elapsed, setElapsed] = useState(0); // seconds
 
   // Set token from localStorage on mount
   useEffect(() => {
@@ -26,6 +29,20 @@ export default function AttendancePage() {
       setAuthError("You are not logged in. Please login to mark attendance.");
     }
   }, []);
+
+  useEffect(() => {
+    let interval: NodeJS.Timeout | null = null;
+    if (status.started && !status.ended && startTime) {
+      interval = setInterval(() => {
+        setElapsed(Math.floor((Date.now() - startTime.getTime()) / 1000));
+      }, 1000);
+    } else if (status.ended && startTime && endTime) {
+      setElapsed(Math.floor((endTime.getTime() - startTime.getTime()) / 1000));
+    } else {
+      setElapsed(0);
+    }
+    return () => { if (interval) clearInterval(interval); };
+  }, [status.started, status.ended, startTime, endTime]);
 
   const handleAction = async (action: "start" | "end" | "break-in" | "break-out") => {
     if (showWorkSummary) return; // Prevent multiple modals
@@ -42,6 +59,7 @@ export default function AttendancePage() {
         const res = await api.post(`/attendance/start`, { work_summary: "" });
         setFeedback(res.data.msg || "Success");
         setStatus({ started: true, ended: false, onBreak: false });
+        setStartTime(new Date());
       } else {
         const res = await api.post(`/attendance/${action}`);
         setFeedback(res.data.msg || "Success");
@@ -70,6 +88,7 @@ export default function AttendancePage() {
       setFeedback(res.data.msg || "Day ended and summary saved");
       setStatus({ started: false, ended: true, onBreak: false });
       setShowWorkSummary(false);
+      setEndTime(new Date());
     } catch (err: any) {
       setFeedback(err.response?.data?.detail || "Failed to save summary");
     } finally {
@@ -90,6 +109,20 @@ export default function AttendancePage() {
       <h1 className="text-2xl font-bold mb-6">Attendance Dashboard</h1>
       <div className="mb-4">
         <div>Status: {status.ended ? "Ended" : status.started ? (status.onBreak ? "On Break" : "Present") : "Not Started"}</div>
+        {status.started && !status.ended && (
+          <div className="font-mono text-lg text-green-700">
+            Time Elapsed: {Math.floor(elapsed / 3600).toString().padStart(2, '0')}:
+            {Math.floor((elapsed % 3600) / 60).toString().padStart(2, '0')}:
+            {(elapsed % 60).toString().padStart(2, '0')}
+          </div>
+        )}
+        {status.ended && (
+          <div className="font-mono text-lg text-blue-700">
+            Total Time: {Math.floor(elapsed / 3600).toString().padStart(2, '0')}:
+            {Math.floor((elapsed % 3600) / 60).toString().padStart(2, '0')}:
+            {(elapsed % 60).toString().padStart(2, '0')}
+          </div>
+        )}
       </div>
       <div className="flex gap-4 mb-6">
         <button
