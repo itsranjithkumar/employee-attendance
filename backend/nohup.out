@@ -1,0 +1,1021 @@
+INFO:     Will watch for changes in these directories: ['/home/ranjithkumar/Ranjith_repo1/employee-attendance/backend']
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+INFO:     Started reloader process [31179] using StatReload
+Process SpawnProcess-1:
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.10/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/ranjithkumar/.local/lib/python3.10/site-packages/uvicorn/_subprocess.py", line 76, in subprocess_started
+    target(sockets=sockets)
+  File "/home/ranjithkumar/.local/lib/python3.10/site-packages/uvicorn/server.py", line 61, in run
+    return asyncio.run(self.serve(sockets=sockets))
+  File "/usr/lib/python3.10/asyncio/runners.py", line 44, in run
+    return loop.run_until_complete(main)
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 649, in run_until_complete
+    return future.result()
+  File "/home/ranjithkumar/.local/lib/python3.10/site-packages/uvicorn/server.py", line 68, in serve
+    config.load()
+  File "/home/ranjithkumar/.local/lib/python3.10/site-packages/uvicorn/config.py", line 467, in load
+    self.loaded_app = import_from_string(self.app)
+  File "/home/ranjithkumar/.local/lib/python3.10/site-packages/uvicorn/importer.py", line 21, in import_from_string
+    module = importlib.import_module(module_str)
+  File "/usr/lib/python3.10/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1006, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 688, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 883, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/home/ranjithkumar/Ranjith_repo1/employee-attendance/backend/main.py", line 3, in <module>
+    from routers.auth import router as auth_router
+  File "/home/ranjithkumar/Ranjith_repo1/employee-attendance/backend/routers/auth.py", line 10, in <module>
+    from core.security import get_current_user
+ImportError: cannot import name 'get_current_user' from 'core.security' (/home/ranjithkumar/Ranjith_repo1/employee-attendance/backend/core/security.py)
+WARNING:  StatReload detected changes in 'routers/auth.py'. Reloading...
+INFO:     Stopping reloader process [31179]
+INFO:     Will watch for changes in these directories: ['/home/ranjithkumar/Ranjith_repo1/employee-attendance/backend']
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+INFO:     Started reloader process [31495] using StatReload
+INFO:     Started server process [31498]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+Decoding token...
+Decoded token: {'sub': 'yamini@gmail.com', 'exp': 1745928239}
+Username: yamini@gmail.com
+Decoding token...
+Decoded token: {'sub': 'yamini@gmail.com', 'exp': 1745928239}
+Username: yamini@gmail.com
+Decoding token...
+Decoded token: {'sub': 'yamini@gmail.com', 'exp': 1745928239}
+Username: yamini@gmail.com
+INFO:     127.0.0.1:48892 - "GET /user/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48910 - "GET /leave/balance HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48908 - "GET /attendance/summary HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59582 - "OPTIONS /attendance/today HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'yamini@gmail.com', 'exp': 1745928239}
+Username: yamini@gmail.com
+INFO:     127.0.0.1:59590 - "GET /attendance/today HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'yamini@gmail.com', 'exp': 1745928239}
+Username: yamini@gmail.com
+INFO:     127.0.0.1:59582 - "OPTIONS /user/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59592 - "OPTIONS /attendance/summary HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59596 - "OPTIONS /leave/balance HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59602 - "OPTIONS /user/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59608 - "OPTIONS /attendance/summary HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59582 - "OPTIONS /leave/balance HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'yamini@gmail.com', 'exp': 1745928239}
+Username: yamini@gmail.com
+INFO:     127.0.0.1:59590 - "GET /attendance/today HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59592 - "GET /user/me HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'yamini@gmail.com', 'exp': 1745928239}
+Username: yamini@gmail.com
+Decoding token...
+Decoded token: {'sub': 'yamini@gmail.com', 'exp': 1745928239}
+Username: yamini@gmail.com
+Decoding token...
+Decoded token: {'sub': 'yamini@gmail.com', 'exp': 1745928239}
+Username: yamini@gmail.com
+INFO:     127.0.0.1:59596 - "GET /attendance/summary HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59602 - "GET /leave/balance HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59582 - "GET /user/me HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'yamini@gmail.com', 'exp': 1745928239}
+Username: yamini@gmail.com
+Decoding token...
+Decoded token: {'sub': 'yamini@gmail.com', 'exp': 1745928239}
+Username: yamini@gmail.com
+INFO:     127.0.0.1:59590 - "GET /leave/balance HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59592 - "GET /attendance/summary HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'yamini@gmail.com', 'exp': 1745928239}
+Username: yamini@gmail.com
+INFO:     127.0.0.1:38396 - "GET /attendance/today HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'yamini@gmail.com', 'exp': 1745928239}
+Username: yamini@gmail.com
+INFO:     127.0.0.1:38396 - "GET /attendance/today HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'yamini@gmail.com', 'exp': 1745928239}
+Username: yamini@gmail.com
+INFO:     127.0.0.1:57874 - "GET /attendance/today HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33450 - "OPTIONS /user/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33464 - "OPTIONS /attendance/summary HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33466 - "OPTIONS /leave/balance HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33478 - "OPTIONS /user/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33482 - "OPTIONS /attendance/summary HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33496 - "OPTIONS /leave/balance HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'yamini@gmail.com', 'exp': 1745928239}
+Username: yamini@gmail.com
+INFO:     127.0.0.1:33450 - "GET /user/me HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'yamini@gmail.com', 'exp': 1745928239}
+Username: yamini@gmail.com
+Decoding token...
+Decoded token: {'sub': 'yamini@gmail.com', 'exp': 1745928239}
+Username: yamini@gmail.com
+Decoding token...
+Decoded token: {'sub': 'yamini@gmail.com', 'exp': 1745928239}
+Username: yamini@gmail.com
+INFO:     127.0.0.1:33466 - "GET /leave/balance HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33450 - "GET /user/me HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'yamini@gmail.com', 'exp': 1745928239}
+Username: yamini@gmail.com
+INFO:     127.0.0.1:33464 - "GET /attendance/summary HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33466 - "GET /leave/balance HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'yamini@gmail.com', 'exp': 1745928239}
+Username: yamini@gmail.com
+INFO:     127.0.0.1:33464 - "GET /attendance/summary HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57104 - "OPTIONS /attendance/today HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57114 - "OPTIONS /attendance/today HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'yamini@gmail.com', 'exp': 1745928239}
+Username: yamini@gmail.com
+INFO:     127.0.0.1:57116 - "GET /attendance/today HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'yamini@gmail.com', 'exp': 1745928239}
+Username: yamini@gmail.com
+INFO:     127.0.0.1:57116 - "GET /attendance/today HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'yamini@gmail.com', 'exp': 1745928239}
+Username: yamini@gmail.com
+INFO:     127.0.0.1:43258 - "GET /user/me HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'yamini@gmail.com', 'exp': 1745928239}
+Username: yamini@gmail.com
+Decoding token...
+Decoded token: {'sub': 'yamini@gmail.com', 'exp': 1745928239}
+Username: yamini@gmail.com
+Decoding token...
+Decoded token: {'sub': 'yamini@gmail.com', 'exp': 1745928239}
+Username: yamini@gmail.com
+INFO:     127.0.0.1:43258 - "GET /user/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43266 - "GET /leave/balance HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'yamini@gmail.com', 'exp': 1745928239}
+Username: yamini@gmail.com
+INFO:     127.0.0.1:43260 - "GET /attendance/summary HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43266 - "GET /leave/balance HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'yamini@gmail.com', 'exp': 1745928239}
+Username: yamini@gmail.com
+INFO:     127.0.0.1:43260 - "GET /attendance/summary HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38028 - "OPTIONS /leave/my-requests HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38048 - "OPTIONS /leave/my-requests HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'yamini@gmail.com', 'exp': 1745928239}
+Username: yamini@gmail.com
+Decoding token...
+Decoded token: {'sub': 'yamini@gmail.com', 'exp': 1745928239}
+Username: yamini@gmail.com
+INFO:     127.0.0.1:38044 - "GET /leave/balance HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'yamini@gmail.com', 'exp': 1745928239}
+Username: yamini@gmail.com
+INFO:     127.0.0.1:38056 - "GET /leave/my-requests HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38044 - "GET /leave/balance HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'yamini@gmail.com', 'exp': 1745928239}
+Username: yamini@gmail.com
+INFO:     127.0.0.1:38056 - "GET /leave/my-requests HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56954 - "OPTIONS /leave/apply HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'yamini@gmail.com', 'exp': 1745928239}
+Username: yamini@gmail.com
+INFO:     127.0.0.1:56960 - "POST /leave/apply HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'yamini@gmail.com', 'exp': 1745928239}
+Username: yamini@gmail.com
+INFO:     127.0.0.1:56960 - "GET /leave/my-requests HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'yamini@gmail.com', 'exp': 1745928239}
+Username: yamini@gmail.com
+Decoding token...
+Decoded token: {'sub': 'yamini@gmail.com', 'exp': 1745928239}
+Username: yamini@gmail.com
+Decoding token...
+Decoded token: {'sub': 'yamini@gmail.com', 'exp': 1745928239}
+Username: yamini@gmail.com
+INFO:     127.0.0.1:56062 - "GET /user/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56082 - "GET /leave/balance HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'yamini@gmail.com', 'exp': 1745928239}
+Username: yamini@gmail.com
+Decoding token...
+INFO:     127.0.0.1:56082 - "GET /user/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56062 - "GET /leave/balance HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:56070 - "GET /attendance/summary HTTP/1.1" 200 OK
+Decoding token...
+INFO:     127.0.0.1:56070 - "GET /attendance/summary HTTP/1.1" 401 Unauthorized
+Decoding token...
+Decoding token...
+Decoding token...
+INFO:     127.0.0.1:56070 - "GET /user/me HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:56062 - "GET /attendance/summary HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:56082 - "GET /leave/balance HTTP/1.1" 401 Unauthorized
+Decoding token...
+Decoding token...
+Decoding token...
+INFO:     127.0.0.1:56070 - "GET /leave/balance HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:56062 - "GET /attendance/summary HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:56082 - "GET /user/me HTTP/1.1" 401 Unauthorized
+Decoding token...
+Decoding token...
+Decoding token...
+INFO:     127.0.0.1:36672 - "GET /user/me HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:36684 - "GET /attendance/summary HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:36690 - "GET /leave/balance HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:35276 - "OPTIONS /user/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35282 - "OPTIONS /attendance/summary HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35290 - "OPTIONS /leave/balance HTTP/1.1" 200 OK
+Decoding token...
+Decoding token...
+Decoding token...
+INFO:     127.0.0.1:35282 - "GET /leave/balance HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:35276 - "GET /attendance/summary HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:35296 - "GET /user/me HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:52330 - "OPTIONS /login HTTP/1.1" 200 OK
+(trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "/home/ranjithkumar/.local/lib/python3.10/site-packages/passlib/handlers/bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+AttributeError: module 'bcrypt' has no attribute '__about__'
+INFO:     127.0.0.1:52342 - "POST /login HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'yamini@gmail.com', 'exp': 1745930233}
+Username: yamini@gmail.com
+Decoding token...
+Decoded token: {'sub': 'yamini@gmail.com', 'exp': 1745930233}
+Username: yamini@gmail.com
+Decoding token...
+Decoded token: {'sub': 'yamini@gmail.com', 'exp': 1745930233}
+Username: yamini@gmail.com
+INFO:     127.0.0.1:52342 - "GET /user/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52350 - "GET /leave/balance HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'yamini@gmail.com', 'exp': 1745930233}
+Username: yamini@gmail.com
+Decoding token...
+Decoded token: {'sub': 'yamini@gmail.com', 'exp': 1745930233}
+Username: yamini@gmail.com
+INFO:     127.0.0.1:52330 - "GET /attendance/summary HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52342 - "GET /user/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52350 - "GET /leave/balance HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'yamini@gmail.com', 'exp': 1745930233}
+Username: yamini@gmail.com
+INFO:     127.0.0.1:52330 - "GET /attendance/summary HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52330 - "OPTIONS /attendance/today HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52350 - "OPTIONS /attendance/today HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'yamini@gmail.com', 'exp': 1745930233}
+Username: yamini@gmail.com
+INFO:     127.0.0.1:52342 - "GET /attendance/today HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'yamini@gmail.com', 'exp': 1745930233}
+Username: yamini@gmail.com
+INFO:     127.0.0.1:52342 - "GET /attendance/today HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'yamini@gmail.com', 'exp': 1745930233}
+Username: yamini@gmail.com
+INFO:     127.0.0.1:52342 - "GET /user/me HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'yamini@gmail.com', 'exp': 1745930233}
+Username: yamini@gmail.com
+Decoding token...
+Decoded token: {'sub': 'yamini@gmail.com', 'exp': 1745930233}
+Username: yamini@gmail.com
+Decoding token...
+Decoded token: {'sub': 'yamini@gmail.com', 'exp': 1745930233}
+Username: yamini@gmail.com
+INFO:     127.0.0.1:52342 - "GET /user/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52330 - "GET /leave/balance HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'yamini@gmail.com', 'exp': 1745930233}
+Username: yamini@gmail.com
+INFO:     127.0.0.1:52350 - "GET /attendance/summary HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52330 - "GET /leave/balance HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'yamini@gmail.com', 'exp': 1745930233}
+Username: yamini@gmail.com
+Decoding token...
+Decoded token: {'sub': 'yamini@gmail.com', 'exp': 1745930233}
+Username: yamini@gmail.com
+Decoding token...
+Decoded token: {'sub': 'yamini@gmail.com', 'exp': 1745930233}
+Username: yamini@gmail.com
+INFO:     127.0.0.1:52350 - "GET /attendance/summary HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52342 - "GET /leave/balance HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'yamini@gmail.com', 'exp': 1745930233}
+Username: yamini@gmail.com
+INFO:     127.0.0.1:52330 - "GET /leave/my-requests HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52342 - "GET /leave/balance HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'yamini@gmail.com', 'exp': 1745930233}
+Username: yamini@gmail.com
+INFO:     127.0.0.1:52330 - "GET /leave/my-requests HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'yamini@gmail.com', 'exp': 1745930233}
+Username: yamini@gmail.com
+Decoding token...
+Decoded token: {'sub': 'yamini@gmail.com', 'exp': 1745930233}
+Username: yamini@gmail.com
+Decoding token...
+Decoded token: {'sub': 'yamini@gmail.com', 'exp': 1745930233}
+Username: yamini@gmail.com
+INFO:     127.0.0.1:52330 - "GET /user/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38342 - "GET /leave/balance HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'yamini@gmail.com', 'exp': 1745930233}
+Username: yamini@gmail.com
+Decoding token...
+Decoded token: {'sub': 'yamini@gmail.com', 'exp': 1745930233}
+Username: yamini@gmail.com
+INFO:     127.0.0.1:38336 - "GET /attendance/summary HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38342 - "GET /user/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52330 - "GET /leave/balance HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'yamini@gmail.com', 'exp': 1745930233}
+Username: yamini@gmail.com
+INFO:     127.0.0.1:52330 - "OPTIONS /calendar/?month=4&year=2025 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38342 - "OPTIONS /calendar/?month=4&year=2025 HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'yamini@gmail.com', 'exp': 1745930233}
+Username: yamini@gmail.com
+INFO:     127.0.0.1:38336 - "GET /attendance/summary HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45012 - "GET /calendar/?month=4&year=2025 HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'yamini@gmail.com', 'exp': 1745930233}
+Username: yamini@gmail.com
+INFO:     127.0.0.1:45012 - "GET /calendar/?month=4&year=2025 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47362 - "OPTIONS /calendar/?month=5&year=2025 HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'yamini@gmail.com', 'exp': 1745930233}
+Username: yamini@gmail.com
+INFO:     127.0.0.1:47368 - "GET /calendar/?month=5&year=2025 HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'yamini@gmail.com', 'exp': 1745930233}
+Username: yamini@gmail.com
+INFO:     127.0.0.1:47368 - "GET /calendar/?month=4&year=2025 HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'yamini@gmail.com', 'exp': 1745930233}
+Username: yamini@gmail.com
+Decoding token...
+Decoded token: {'sub': 'yamini@gmail.com', 'exp': 1745930233}
+Username: yamini@gmail.com
+Decoding token...
+Decoded token: {'sub': 'yamini@gmail.com', 'exp': 1745930233}
+Username: yamini@gmail.com
+INFO:     127.0.0.1:53038 - "GET /user/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53052 - "GET /leave/balance HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'yamini@gmail.com', 'exp': 1745930233}
+Username: yamini@gmail.com
+Decoding token...
+Decoded token: {'sub': 'yamini@gmail.com', 'exp': 1745930233}
+Username: yamini@gmail.com
+INFO:     127.0.0.1:53048 - "GET /attendance/summary HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53052 - "GET /user/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53038 - "GET /leave/balance HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'yamini@gmail.com', 'exp': 1745930233}
+Username: yamini@gmail.com
+INFO:     127.0.0.1:53048 - "GET /attendance/summary HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44062 - "OPTIONS /leave/pending HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'yamini@gmail.com', 'exp': 1745930233}
+Username: yamini@gmail.com
+INFO:     127.0.0.1:44066 - "GET /leave/pending HTTP/1.1" 403 Forbidden
+INFO:     127.0.0.1:56210 - "POST /login HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'ranjithhhh@eexample.com', 'exp': 1745930500}
+Username: ranjithhhh@eexample.com
+Decoding token...
+Decoded token: {'sub': 'ranjithhhh@eexample.com', 'exp': 1745930500}
+Username: ranjithhhh@eexample.com
+Decoding token...
+Decoded token: {'sub': 'ranjithhhh@eexample.com', 'exp': 1745930500}
+Username: ranjithhhh@eexample.com
+INFO:     127.0.0.1:56210 - "GET /user/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56228 - "GET /leave/balance HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'ranjithhhh@eexample.com', 'exp': 1745930500}
+Username: ranjithhhh@eexample.com
+Decoding token...
+Decoded token: {'sub': 'ranjithhhh@eexample.com', 'exp': 1745930500}
+Username: ranjithhhh@eexample.com
+INFO:     127.0.0.1:56218 - "GET /attendance/summary HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56228 - "GET /user/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56210 - "GET /leave/balance HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'ranjithhhh@eexample.com', 'exp': 1745930500}
+Username: ranjithhhh@eexample.com
+INFO:     127.0.0.1:56218 - "GET /attendance/summary HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'ranjithhhh@eexample.com', 'exp': 1745930500}
+Username: ranjithhhh@eexample.com
+INFO:     127.0.0.1:46262 - "GET /calendar/?month=4&year=2025 HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'ranjithhhh@eexample.com', 'exp': 1745930500}
+Username: ranjithhhh@eexample.com
+INFO:     127.0.0.1:46262 - "GET /calendar/?month=4&year=2025 HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'ranjithhhh@eexample.com', 'exp': 1745930500}
+Username: ranjithhhh@eexample.com
+Decoding token...
+Decoded token: {'sub': 'ranjithhhh@eexample.com', 'exp': 1745930500}
+Username: ranjithhhh@eexample.com
+Decoding token...
+Decoded token: {'sub': 'ranjithhhh@eexample.com', 'exp': 1745930500}
+Username: ranjithhhh@eexample.com
+INFO:     127.0.0.1:46262 - "GET /user/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46278 - "GET /leave/balance HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'ranjithhhh@eexample.com', 'exp': 1745930500}
+Username: ranjithhhh@eexample.com
+Decoding token...
+Decoded token: {'sub': 'ranjithhhh@eexample.com', 'exp': 1745930500}
+Username: ranjithhhh@eexample.com
+INFO:     127.0.0.1:46270 - "GET /attendance/summary HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46278 - "GET /user/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46262 - "GET /leave/balance HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'ranjithhhh@eexample.com', 'exp': 1745930500}
+Username: ranjithhhh@eexample.com
+INFO:     127.0.0.1:46270 - "GET /attendance/summary HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54192 - "OPTIONS /leave/my-requests HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54222 - "OPTIONS /leave/my-requests HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'ranjithhhh@eexample.com', 'exp': 1745930500}
+Username: ranjithhhh@eexample.com
+Decoding token...
+Decoded token: {'sub': 'ranjithhhh@eexample.com', 'exp': 1745930500}
+Username: ranjithhhh@eexample.com
+INFO:     127.0.0.1:54206 - "GET /leave/balance HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'ranjithhhh@eexample.com', 'exp': 1745930500}
+Username: ranjithhhh@eexample.com
+INFO:     127.0.0.1:54232 - "GET /leave/my-requests HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54206 - "GET /leave/balance HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'ranjithhhh@eexample.com', 'exp': 1745930500}
+Username: ranjithhhh@eexample.com
+INFO:     127.0.0.1:54232 - "GET /leave/my-requests HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'ranjithhhh@eexample.com', 'exp': 1745930500}
+Username: ranjithhhh@eexample.com
+Decoding token...
+Decoded token: {'sub': 'ranjithhhh@eexample.com', 'exp': 1745930500}
+Username: ranjithhhh@eexample.com
+Decoding token...
+Decoded token: {'sub': 'ranjithhhh@eexample.com', 'exp': 1745930500}
+Username: ranjithhhh@eexample.com
+INFO:     127.0.0.1:54232 - "GET /user/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54222 - "GET /leave/balance HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'ranjithhhh@eexample.com', 'exp': 1745930500}
+Username: ranjithhhh@eexample.com
+Decoding token...
+Decoded token: {'sub': 'ranjithhhh@eexample.com', 'exp': 1745930500}
+Username: ranjithhhh@eexample.com
+INFO:     127.0.0.1:54206 - "GET /attendance/summary HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54222 - "GET /user/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54232 - "GET /leave/balance HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'ranjithhhh@eexample.com', 'exp': 1745930500}
+Username: ranjithhhh@eexample.com
+INFO:     127.0.0.1:54206 - "GET /attendance/summary HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'ranjithhhh@eexample.com', 'exp': 1745930500}
+Username: ranjithhhh@eexample.com
+INFO:     127.0.0.1:54206 - "GET /leave/pending HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'ranjithhhh@eexample.com', 'exp': 1745930500}
+Username: ranjithhhh@eexample.com
+INFO:     127.0.0.1:47596 - "GET /leave/pending HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52634 - "OPTIONS /leave/reject/4 HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'ranjithhhh@eexample.com', 'exp': 1745930500}
+Username: ranjithhhh@eexample.com
+INFO:     127.0.0.1:52642 - "POST /leave/reject/4 HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'ranjithhhh@eexample.com', 'exp': 1745930500}
+Username: ranjithhhh@eexample.com
+INFO:     127.0.0.1:52642 - "GET /leave/pending HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'ranjithhhh@eexample.com', 'exp': 1745930500}
+Username: ranjithhhh@eexample.com
+Decoding token...
+Decoded token: {'sub': 'ranjithhhh@eexample.com', 'exp': 1745930500}
+Username: ranjithhhh@eexample.com
+INFO:     127.0.0.1:48930 - "GET /user/me HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'ranjithhhh@eexample.com', 'exp': 1745930500}
+Username: ranjithhhh@eexample.com
+INFO:     127.0.0.1:48950 - "GET /leave/balance HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48942 - "GET /attendance/summary HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'ranjithhhh@eexample.com', 'exp': 1745930500}
+Username: ranjithhhh@eexample.com
+INFO:     127.0.0.1:48942 - "GET /calendar/?month=4&year=2025 HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'ranjithhhh@eexample.com', 'exp': 1745930500}
+Username: ranjithhhh@eexample.com
+INFO:     127.0.0.1:48942 - "GET /calendar/?month=4&year=2025 HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'ranjithhhh@eexample.com', 'exp': 1745930500}
+Username: ranjithhhh@eexample.com
+INFO:     127.0.0.1:48942 - "GET /user/me HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'ranjithhhh@eexample.com', 'exp': 1745930500}
+Username: ranjithhhh@eexample.com
+Decoding token...
+Decoded token: {'sub': 'ranjithhhh@eexample.com', 'exp': 1745930500}
+Username: ranjithhhh@eexample.com
+Decoding token...
+Decoded token: {'sub': 'ranjithhhh@eexample.com', 'exp': 1745930500}
+Username: ranjithhhh@eexample.com
+INFO:     127.0.0.1:40758 - "GET /leave/balance HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48942 - "GET /user/me HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'ranjithhhh@eexample.com', 'exp': 1745930500}
+Username: ranjithhhh@eexample.com
+INFO:     127.0.0.1:40750 - "GET /attendance/summary HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40758 - "GET /leave/balance HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'ranjithhhh@eexample.com', 'exp': 1745930500}
+Username: ranjithhhh@eexample.com
+Decoding token...
+Decoded token: {'sub': 'ranjithhhh@eexample.com', 'exp': 1745930500}
+Username: ranjithhhh@eexample.com
+Decoding token...
+Decoded token: {'sub': 'ranjithhhh@eexample.com', 'exp': 1745930500}
+Username: ranjithhhh@eexample.com
+INFO:     127.0.0.1:40750 - "GET /attendance/summary HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48942 - "GET /leave/balance HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'ranjithhhh@eexample.com', 'exp': 1745930500}
+Username: ranjithhhh@eexample.com
+INFO:     127.0.0.1:40758 - "GET /leave/my-requests HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48942 - "GET /leave/balance HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'ranjithhhh@eexample.com', 'exp': 1745930500}
+Username: ranjithhhh@eexample.com
+INFO:     127.0.0.1:40758 - "GET /leave/my-requests HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'ranjithhhh@eexample.com', 'exp': 1745930500}
+Username: ranjithhhh@eexample.com
+Decoding token...
+Decoded token: {'sub': 'ranjithhhh@eexample.com', 'exp': 1745930500}
+Username: ranjithhhh@eexample.com
+Decoding token...
+Decoded token: {'sub': 'ranjithhhh@eexample.com', 'exp': 1745930500}
+Username: ranjithhhh@eexample.com
+INFO:     127.0.0.1:40758 - "GET /user/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40750 - "GET /leave/balance HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'ranjithhhh@eexample.com', 'exp': 1745930500}
+Username: ranjithhhh@eexample.com
+Decoding token...
+Decoded token: {'sub': 'ranjithhhh@eexample.com', 'exp': 1745930500}
+Username: ranjithhhh@eexample.com
+INFO:     127.0.0.1:48942 - "GET /attendance/summary HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40750 - "GET /user/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40758 - "GET /leave/balance HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'ranjithhhh@eexample.com', 'exp': 1745930500}
+Username: ranjithhhh@eexample.com
+INFO:     127.0.0.1:48942 - "GET /attendance/summary HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39912 - "OPTIONS /leave/balance HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39914 - "OPTIONS /leave/balance HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'ranjithhhh@eexample.com', 'exp': 1745930500}
+Username: ranjithhhh@eexample.com
+Decoding token...
+Decoded token: {'sub': 'ranjithhhh@eexample.com', 'exp': 1745930500}
+Username: ranjithhhh@eexample.com
+INFO:     127.0.0.1:39902 - "GET /leave/my-requests HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39920 - "GET /leave/balance HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'ranjithhhh@eexample.com', 'exp': 1745930500}
+Username: ranjithhhh@eexample.com
+Decoding token...
+Decoded token: {'sub': 'ranjithhhh@eexample.com', 'exp': 1745930500}
+Username: ranjithhhh@eexample.com
+INFO:     127.0.0.1:39902 - "GET /leave/balance HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39920 - "GET /leave/my-requests HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47360 - "OPTIONS /user/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47376 - "OPTIONS /attendance/summary HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47392 - "OPTIONS /user/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47400 - "OPTIONS /attendance/summary HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'ranjithhhh@eexample.com', 'exp': 1745930500}
+Username: ranjithhhh@eexample.com
+Decoding token...
+Decoded token: {'sub': 'ranjithhhh@eexample.com', 'exp': 1745930500}
+Username: ranjithhhh@eexample.com
+Decoding token...
+Decoded token: {'sub': 'ranjithhhh@eexample.com', 'exp': 1745930500}
+Username: ranjithhhh@eexample.com
+INFO:     127.0.0.1:47416 - "GET /user/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47384 - "GET /leave/balance HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'ranjithhhh@eexample.com', 'exp': 1745930500}
+Username: ranjithhhh@eexample.com
+Decoding token...
+Decoded token: {'sub': 'ranjithhhh@eexample.com', 'exp': 1745930500}
+Username: ranjithhhh@eexample.com
+INFO:     127.0.0.1:47360 - "GET /attendance/summary HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47384 - "GET /user/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47416 - "GET /leave/balance HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'ranjithhhh@eexample.com', 'exp': 1745930500}
+Username: ranjithhhh@eexample.com
+INFO:     127.0.0.1:47400 - "GET /attendance/summary HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'ranjithhhh@eexample.com', 'exp': 1745930500}
+Username: ranjithhhh@eexample.com
+INFO:     127.0.0.1:47400 - "GET /calendar/?month=4&year=2025 HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'ranjithhhh@eexample.com', 'exp': 1745930500}
+Username: ranjithhhh@eexample.com
+INFO:     127.0.0.1:47400 - "GET /calendar/?month=4&year=2025 HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'ranjithhhh@eexample.com', 'exp': 1745930500}
+Username: ranjithhhh@eexample.com
+INFO:     127.0.0.1:47400 - "GET /user/me HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'ranjithhhh@eexample.com', 'exp': 1745930500}
+Username: ranjithhhh@eexample.com
+Decoding token...
+Decoded token: {'sub': 'ranjithhhh@eexample.com', 'exp': 1745930500}
+Username: ranjithhhh@eexample.com
+Decoding token...
+Decoded token: {'sub': 'ranjithhhh@eexample.com', 'exp': 1745930500}
+Username: ranjithhhh@eexample.com
+INFO:     127.0.0.1:53048 - "GET /leave/balance HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47400 - "GET /user/me HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'ranjithhhh@eexample.com', 'exp': 1745930500}
+Username: ranjithhhh@eexample.com
+INFO:     127.0.0.1:53038 - "GET /attendance/summary HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53048 - "GET /leave/balance HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'ranjithhhh@eexample.com', 'exp': 1745930500}
+Username: ranjithhhh@eexample.com
+INFO:     127.0.0.1:53038 - "GET /attendance/summary HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'ranjithhhh@eexample.com', 'exp': 1745930500}
+Username: ranjithhhh@eexample.com
+INFO:     127.0.0.1:53038 - "GET /attendance/today HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'ranjithhhh@eexample.com', 'exp': 1745930500}
+Username: ranjithhhh@eexample.com
+INFO:     127.0.0.1:53038 - "GET /attendance/today HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53038 - "OPTIONS /attendance/start HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'ranjithhhh@eexample.com', 'exp': 1745930500}
+Username: ranjithhhh@eexample.com
+Existing attendance: None
+Starting attendance for Ranjithhhh Kumarr on 2025-04-29
+INFO:     127.0.0.1:35344 - "POST /attendance/start HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'ranjithhhh@eexample.com', 'exp': 1745930500}
+Username: ranjithhhh@eexample.com
+Decoding token...
+Decoded token: {'sub': 'ranjithhhh@eexample.com', 'exp': 1745930500}
+Username: ranjithhhh@eexample.com
+Decoding token...
+Decoded token: {'sub': 'ranjithhhh@eexample.com', 'exp': 1745930500}
+Username: ranjithhhh@eexample.com
+INFO:     127.0.0.1:44552 - "GET /user/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44568 - "GET /leave/balance HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'ranjithhhh@eexample.com', 'exp': 1745930500}
+Username: ranjithhhh@eexample.com
+Decoding token...
+Decoded token: {'sub': 'ranjithhhh@eexample.com', 'exp': 1745930500}
+Username: ranjithhhh@eexample.com
+INFO:     127.0.0.1:44564 - "GET /attendance/summary HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44568 - "GET /user/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44552 - "GET /leave/balance HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'ranjithhhh@eexample.com', 'exp': 1745930500}
+Username: ranjithhhh@eexample.com
+Decoding token...
+Decoded token: {'sub': 'ranjithhhh@eexample.com', 'exp': 1745930500}
+Username: ranjithhhh@eexample.com
+INFO:     127.0.0.1:44564 - "GET /attendance/summary HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44552 - "GET /attendance/today HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'ranjithhhh@eexample.com', 'exp': 1745930500}
+Username: ranjithhhh@eexample.com
+INFO:     127.0.0.1:44552 - "GET /attendance/today HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'ranjithhhh@eexample.com', 'exp': 1745930500}
+Username: ranjithhhh@eexample.com
+INFO:     127.0.0.1:36210 - "GET /attendance/today HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48116 - "OPTIONS /attendance/break-in HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'ranjithhhh@eexample.com', 'exp': 1745930500}
+Username: ranjithhhh@eexample.com
+INFO:     127.0.0.1:48132 - "POST /attendance/break-in HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48132 - "OPTIONS /attendance/break-out HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'ranjithhhh@eexample.com', 'exp': 1745930500}
+Username: ranjithhhh@eexample.com
+INFO:     127.0.0.1:48146 - "POST /attendance/break-out HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53326 - "OPTIONS /attendance/end HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'ranjithhhh@eexample.com', 'exp': 1745930500}
+Username: ranjithhhh@eexample.com
+INFO:     127.0.0.1:53338 - "POST /attendance/end HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51962 - "OPTIONS /admin/users HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'ranjithhhh@eexample.com', 'exp': 1745930500}
+Username: ranjithhhh@eexample.com
+INFO:     127.0.0.1:51968 - "GET /admin/users HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'ranjithhhh@eexample.com', 'exp': 1745930500}
+Username: ranjithhhh@eexample.com
+INFO:     127.0.0.1:53138 - "GET /admin/users HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35634 - "OPTIONS /admin/attendance?date=2025-04-29 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35638 - "OPTIONS /admin/attendance?date=2025-04-29 HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'ranjithhhh@eexample.com', 'exp': 1745930500}
+Username: ranjithhhh@eexample.com
+INFO:     127.0.0.1:35648 - "GET /admin/attendance?date=2025-04-29 HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'ranjithhhh@eexample.com', 'exp': 1745930500}
+Username: ranjithhhh@eexample.com
+INFO:     127.0.0.1:35648 - "GET /admin/attendance?date=2025-04-29 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39220 - "OPTIONS /admin/attendance?date=2025-04-26 HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'ranjithhhh@eexample.com', 'exp': 1745930500}
+Username: ranjithhhh@eexample.com
+INFO:     127.0.0.1:39226 - "GET /admin/attendance?date=2025-04-26 HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'ranjithhhh@eexample.com', 'exp': 1745930500}
+Username: ranjithhhh@eexample.com
+INFO:     127.0.0.1:56374 - "GET /admin/attendance?date=2025-04-29 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57070 - "OPTIONS /admin/users HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'ranjithhhh@eexample.com', 'exp': 1745930500}
+Username: ranjithhhh@eexample.com
+INFO:     127.0.0.1:57078 - "POST /admin/users HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'ranjithhhh@eexample.com', 'exp': 1745930500}
+Username: ranjithhhh@eexample.com
+INFO:     127.0.0.1:57078 - "GET /admin/users HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'ranjithhhh@eexample.com', 'exp': 1745930500}
+Username: ranjithhhh@eexample.com
+INFO:     127.0.0.1:40182 - "GET /admin/attendance?date=2025-04-29 HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'ranjithhhh@eexample.com', 'exp': 1745930500}
+Username: ranjithhhh@eexample.com
+INFO:     127.0.0.1:40182 - "GET /admin/attendance?date=2025-04-29 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40182 - "OPTIONS /attendance/today HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'ranjithhhh@eexample.com', 'exp': 1745930500}
+Username: ranjithhhh@eexample.com
+INFO:     127.0.0.1:55538 - "GET /attendance/today HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'ranjithhhh@eexample.com', 'exp': 1745930500}
+Username: ranjithhhh@eexample.com
+Decoding token...
+Decoded token: {'sub': 'ranjithhhh@eexample.com', 'exp': 1745930500}
+Username: ranjithhhh@eexample.com
+Decoding token...
+Decoded token: {'sub': 'ranjithhhh@eexample.com', 'exp': 1745930500}
+Username: ranjithhhh@eexample.com
+INFO:     127.0.0.1:55538 - "GET /user/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55548 - "GET /leave/balance HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'ranjithhhh@eexample.com', 'exp': 1745930500}
+Username: ranjithhhh@eexample.com
+Decoding token...
+Decoded token: {'sub': 'ranjithhhh@eexample.com', 'exp': 1745930500}
+Username: ranjithhhh@eexample.com
+INFO:     127.0.0.1:40182 - "GET /attendance/summary HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55548 - "GET /user/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55538 - "GET /leave/balance HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'ranjithhhh@eexample.com', 'exp': 1745930500}
+Username: ranjithhhh@eexample.com
+INFO:     127.0.0.1:40182 - "GET /attendance/summary HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40182 - "OPTIONS /leave/my-requests HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58662 - "OPTIONS /leave/my-requests HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'ranjithhhh@eexample.com', 'exp': 1745930500}
+Username: ranjithhhh@eexample.com
+INFO:     127.0.0.1:58648 - "GET /leave/balance HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'ranjithhhh@eexample.com', 'exp': 1745930500}
+Username: ranjithhhh@eexample.com
+Decoding token...
+Decoded token: {'sub': 'ranjithhhh@eexample.com', 'exp': 1745930500}
+Username: ranjithhhh@eexample.com
+INFO:     127.0.0.1:58648 - "GET /leave/balance HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58678 - "GET /leave/my-requests HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'ranjithhhh@eexample.com', 'exp': 1745930500}
+Username: ranjithhhh@eexample.com
+INFO:     127.0.0.1:58678 - "GET /leave/my-requests HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'ranjithhhh@eexample.com', 'exp': 1745930500}
+Username: ranjithhhh@eexample.com
+INFO:     127.0.0.1:58678 - "GET /user/me HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'ranjithhhh@eexample.com', 'exp': 1745930500}
+Username: ranjithhhh@eexample.com
+Decoding token...
+Decoded token: {'sub': 'ranjithhhh@eexample.com', 'exp': 1745930500}
+Username: ranjithhhh@eexample.com
+Decoding token...
+Decoded token: {'sub': 'ranjithhhh@eexample.com', 'exp': 1745930500}
+Username: ranjithhhh@eexample.com
+INFO:     127.0.0.1:58662 - "GET /leave/balance HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58678 - "GET /user/me HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'ranjithhhh@eexample.com', 'exp': 1745930500}
+Username: ranjithhhh@eexample.com
+INFO:     127.0.0.1:58648 - "GET /attendance/summary HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58662 - "GET /leave/balance HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'ranjithhhh@eexample.com', 'exp': 1745930500}
+Username: ranjithhhh@eexample.com
+INFO:     127.0.0.1:58662 - "OPTIONS /calendar/?month=4&year=2025 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58678 - "OPTIONS /calendar/?month=4&year=2025 HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'ranjithhhh@eexample.com', 'exp': 1745930500}
+Username: ranjithhhh@eexample.com
+INFO:     127.0.0.1:58648 - "GET /attendance/summary HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53908 - "GET /calendar/?month=4&year=2025 HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'ranjithhhh@eexample.com', 'exp': 1745930500}
+Username: ranjithhhh@eexample.com
+INFO:     127.0.0.1:53908 - "GET /calendar/?month=4&year=2025 HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'ranjithhhh@eexample.com', 'exp': 1745930500}
+Username: ranjithhhh@eexample.com
+INFO:     127.0.0.1:53908 - "GET /user/me HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'ranjithhhh@eexample.com', 'exp': 1745930500}
+Username: ranjithhhh@eexample.com
+Decoding token...
+Decoded token: {'sub': 'ranjithhhh@eexample.com', 'exp': 1745930500}
+Username: ranjithhhh@eexample.com
+Decoding token...
+Decoded token: {'sub': 'ranjithhhh@eexample.com', 'exp': 1745930500}
+Username: ranjithhhh@eexample.com
+INFO:     127.0.0.1:53908 - "GET /user/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53936 - "GET /leave/balance HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'ranjithhhh@eexample.com', 'exp': 1745930500}
+Username: ranjithhhh@eexample.com
+INFO:     127.0.0.1:53924 - "GET /attendance/summary HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53936 - "GET /leave/balance HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'ranjithhhh@eexample.com', 'exp': 1745930500}
+Username: ranjithhhh@eexample.com
+INFO:     127.0.0.1:53924 - "GET /attendance/summary HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'ranjithhhh@eexample.com', 'exp': 1745930500}
+Username: ranjithhhh@eexample.com
+INFO:     127.0.0.1:38126 - "GET /attendance/today HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'ranjithhhh@eexample.com', 'exp': 1745930500}
+Username: ranjithhhh@eexample.com
+INFO:     127.0.0.1:38126 - "GET /attendance/today HTTP/1.1" 200 OK
+WARNING:  StatReload detected changes in 'routers/attendance.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [31498]
+INFO:     Started server process [36587]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     127.0.0.1:43394 - "OPTIONS /login HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43400 - "POST /login HTTP/1.1" 401 Unauthorized
+(trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "/home/ranjithkumar/.local/lib/python3.10/site-packages/passlib/handlers/bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+AttributeError: module 'bcrypt' has no attribute '__about__'
+INFO:     127.0.0.1:47540 - "POST /login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:54982 - "POST /login HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54982 - "OPTIONS /user/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54988 - "OPTIONS /attendance/summary HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55000 - "OPTIONS /leave/balance HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55012 - "OPTIONS /user/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55018 - "OPTIONS /attendance/summary HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55030 - "OPTIONS /leave/balance HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'gokul@example.com', 'exp': 1745931609}
+Username: gokul@example.com
+Decoding token...
+Decoded token: {'sub': 'gokul@example.com', 'exp': 1745931609}
+Username: gokul@example.com
+INFO:     127.0.0.1:54982 - "GET /user/me HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'gokul@example.com', 'exp': 1745931609}
+Username: gokul@example.com
+Decoding token...
+Decoded token: {'sub': 'gokul@example.com', 'exp': 1745931609}
+Username: gokul@example.com
+INFO:     127.0.0.1:55000 - "GET /leave/balance HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54988 - "GET /attendance/summary HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55030 - "GET /user/me HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'gokul@example.com', 'exp': 1745931609}
+Username: gokul@example.com
+Decoding token...
+Decoded token: {'sub': 'gokul@example.com', 'exp': 1745931609}
+Username: gokul@example.com
+INFO:     127.0.0.1:55036 - "GET /leave/balance HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55038 - "GET /attendance/summary HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'gokul@example.com', 'exp': 1745931609}
+Username: gokul@example.com
+INFO:     127.0.0.1:55038 - "GET /attendance/today HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'gokul@example.com', 'exp': 1745931609}
+Username: gokul@example.com
+INFO:     127.0.0.1:55038 - "GET /attendance/today HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55038 - "OPTIONS /attendance/start HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'gokul@example.com', 'exp': 1745931609}
+Username: gokul@example.com
+Existing attendance: None
+Starting attendance for gokul on 2025-04-29
+INFO:     127.0.0.1:55036 - "POST /attendance/start HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51356 - "OPTIONS /attendance/break-in HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'gokul@example.com', 'exp': 1745931609}
+Username: gokul@example.com
+INFO:     127.0.0.1:51360 - "POST /attendance/break-in HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51212 - "OPTIONS /attendance/break-out HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'gokul@example.com', 'exp': 1745931609}
+Username: gokul@example.com
+INFO:     127.0.0.1:51220 - "POST /attendance/break-out HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'gokul@example.com', 'exp': 1745931609}
+Username: gokul@example.com
+INFO:     127.0.0.1:60852 - "GET /attendance/today HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'gokul@example.com', 'exp': 1745931609}
+Username: gokul@example.com
+Decoding token...
+Decoded token: {'sub': 'gokul@example.com', 'exp': 1745931609}
+Username: gokul@example.com
+Decoding token...
+Decoded token: {'sub': 'gokul@example.com', 'exp': 1745931609}
+Username: gokul@example.com
+INFO:     127.0.0.1:45174 - "GET /user/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45194 - "GET /leave/balance HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'gokul@example.com', 'exp': 1745931609}
+Username: gokul@example.com
+INFO:     127.0.0.1:45180 - "GET /attendance/summary HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45174 - "GET /user/me HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'gokul@example.com', 'exp': 1745931609}
+Username: gokul@example.com
+Decoding token...
+Decoded token: {'sub': 'gokul@example.com', 'exp': 1745931609}
+Username: gokul@example.com
+INFO:     127.0.0.1:45194 - "GET /leave/balance HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'gokul@example.com', 'exp': 1745931609}
+Username: gokul@example.com
+Decoding token...
+Decoded token: {'sub': 'gokul@example.com', 'exp': 1745931609}
+Username: gokul@example.com
+INFO:     127.0.0.1:45180 - "GET /attendance/summary HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45174 - "GET /leave/balance HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'gokul@example.com', 'exp': 1745931609}
+Username: gokul@example.com
+INFO:     127.0.0.1:45194 - "GET /leave/my-requests HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45174 - "GET /leave/balance HTTP/1.1" 200 OK
+Decoding token...
+Decoded token: {'sub': 'gokul@example.com', 'exp': 1745931609}
+Username: gokul@example.com
+INFO:     127.0.0.1:45194 - "GET /leave/my-requests HTTP/1.1" 200 OK
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [36587]
+INFO:     Stopping reloader process [31495]

@@ -31,8 +31,8 @@ def create_user(user: UserCreate, db: Session = Depends(get_db), current_user: U
     new_user = User(
         name=user.name,
         email=user.email,
-        hashed_password=hash_password(user.password),
-        role="user"
+        hashed_password=hash_password(user.password) if user.password else None,
+        role=user.role if hasattr(user, 'role') else "user"
     )
     db.add(new_user)
     db.commit()
@@ -48,8 +48,11 @@ def edit_user(user_id: int, user: UserCreate, db: Session = Depends(get_db), cur
         raise HTTPException(status_code=404, detail="User not found")
     db_user.name = user.name
     db_user.email = user.email
+    db_user.role = user.role if hasattr(user, 'role') else db_user.role
     from core.security import hash_password
-    db_user.hashed_password = hash_password(user.password)
+    if user.password:
+        db_user.hashed_password = hash_password(user.password)
+    # If no password provided, do not change hashed_password
     db.commit()
     db.refresh(db_user)
     return db_user

@@ -2,6 +2,7 @@ from sqlalchemy import Column, Integer, DateTime, ForeignKey, String
 from sqlalchemy.orm import relationship
 from datetime import datetime
 from core.database import Base
+from .breaks import Break  # Correct relative import for Break model
 
 class Attendance(Base):
     __tablename__ = "attendance"
@@ -14,5 +15,8 @@ class Attendance(Base):
     break_in = Column(DateTime, nullable=True)
     break_out = Column(DateTime, nullable=True)
     work_summary = Column(String, nullable=True)
+
+    # Relationship to Breaks
+    breaks = relationship(Break, back_populates="attendance", cascade="all, delete-orphan")
 
     employee = relationship("User", back_populates="attendance")

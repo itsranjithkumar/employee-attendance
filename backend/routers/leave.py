@@ -11,9 +11,9 @@ from utils.jwt_token import get_current_user
 router = APIRouter(prefix="/leave", tags=["Leave"])
 
 def is_admin(current_user: User):
-    # Only allow the specific admin email
-    if current_user.role != "admin" or current_user.email != "ranjithhhh@eexample.com":
-        raise HTTPException(status_code=403, detail="Not authorized: Only this admin can perform this action")
+    # Allow any user with admin role
+    if current_user.role != "admin":
+        raise HTTPException(status_code=403, detail="Admins only")
 
 @router.post("/apply", response_model=LeaveRequestResponse)
 def apply_leave(request: LeaveRequestCreate, db: Session = Depends(get_db), current_user: User = Depends(get_current_user)):
