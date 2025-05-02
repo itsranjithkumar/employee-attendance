@@ -48,7 +48,21 @@ def my_leave_requests(db: Session = Depends(get_db), current_user: User = Depend
 @router.get("/pending", response_model=List[LeaveRequestResponse])
 def pending_requests(db: Session = Depends(get_db), current_user: User = Depends(get_current_user)):
     is_admin(current_user)
-    return db.query(LeaveRequest).filter(LeaveRequest.status == LeaveStatus.PENDING).order_by(LeaveRequest.applied_at.desc()).all()
+    # Query with joined User table to get employee details
+    leaves = db.query(LeaveRequest).\
+        join(User, LeaveRequest.employee_id == User.id).\
+        filter(LeaveRequest.status == LeaveStatus.PENDING).\
+        order_by(LeaveRequest.applied_at.desc()).\
+        all()
+    
+    # Convert to response model with employee details
+    return [{
+        **leave.__dict__,
+        "employee": {
+            "name": leave.employee.name,
+            "email": leave.employee.email
+        }
+    } for leave in leaves]
 
 @router.post("/approve/{leave_id}", response_model=LeaveRequestResponse)
 def approve_leave(leave_id: int, db: Session = Depends(get_db), current_user: User = Depends(get_current_user)):
