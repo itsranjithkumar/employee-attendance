@@ -1,5 +1,6 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
+from sqlalchemy import func
 from core.database import get_db
 from models.attendance import Attendance
 from models.breaks import Break
@@ -51,7 +52,10 @@ def end_day(data: AttendanceEnd, db: Session = Depends(get_db), current_user=Dep
 @router.get("/today")
 def get_today_attendance(db: Session = Depends(get_db), current_user=Depends(get_current_user)):
     today = datetime.utcnow().date()
-    attendance = db.query(Attendance).filter_by(employee_id=current_user.id, date=today).first()
+    attendance = db.query(Attendance).filter(
+        Attendance.employee_id == current_user.id,
+        func.date(Attendance.start_time) == today
+    ).first()
     if not attendance:
         return {"start_time": None, "end_time": None, "breaks": []}
     # Get all breaks for this attendance
@@ -70,7 +74,10 @@ def get_today_attendance(db: Session = Depends(get_db), current_user=Depends(get
 @router.post("/break-in")
 def break_in(db: Session = Depends(get_db), current_user=Depends(get_current_user)):
     today = datetime.utcnow().date()
-    attendance = db.query(Attendance).filter_by(employee_id=current_user.id, date=today).first()
+    attendance = db.query(Attendance).filter(
+        Attendance.employee_id == current_user.id,
+        func.date(Attendance.start_time) == today
+    ).first()
     if not attendance:
         # Try to debug why attendance is not found
         all_today = db.query(Attendance).filter_by(date=today).all()
@@ -88,7 +95,10 @@ def break_in(db: Session = Depends(get_db), current_user=Depends(get_current_use
 @router.post("/break-out")
 def break_out(db: Session = Depends(get_db), current_user=Depends(get_current_user)):
     today = datetime.utcnow().date()
-    attendance = db.query(Attendance).filter_by(employee_id=current_user.id, date=today).first()
+    attendance = db.query(Attendance).filter(
+        Attendance.employee_id == current_user.id,
+        func.date(Attendance.start_time) == today
+    ).first()
     if not attendance:
         raise HTTPException(status_code=404, detail="No attendance record found for today.")
     

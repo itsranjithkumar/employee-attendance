@@ -1,6 +1,6 @@
-from sqlalchemy import Column, Integer, DateTime, ForeignKey, String
+from sqlalchemy import Column, Integer, DateTime, ForeignKey, String, Date
 from sqlalchemy.orm import relationship
-from datetime import datetime
+from datetime import datetime, date
 from core.database import Base
 from .breaks import Break  # Correct relative import for Break model
 
@@ -9,7 +9,7 @@ class Attendance(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     employee_id = Column(Integer, ForeignKey("users.id"))
-    date = Column(DateTime, default=datetime.utcnow)
+    date = Column(Date, default=date.today)
     start_time = Column(DateTime, nullable=True)
     end_time = Column(DateTime, nullable=True)
     break_in = Column(DateTime, nullable=True)
