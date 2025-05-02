@@ -12,7 +12,10 @@ interface LeaveRequest {
   reason: string
   status: string
   applied_at: string
-  employee?: { name?: string; email?: string }
+  employee: {
+    name: string
+    email: string
+  }
 }
 
 export default function AdminLeavePage() {
@@ -167,7 +170,9 @@ export default function AdminLeavePage() {
                             </div>
                             <div>
                               <div className="text-sm font-medium text-slate-900">ID: {lr.employee_id}</div>
-                              {lr.employee?.name && <div className="text-xs text-slate-500">{lr.employee.name}</div>}
+                              {lr.employee && (
+                                <div className="text-xs text-slate-500">{lr.employee.name}</div>
+                              )}
                             </div>
                           </div>
                         </td>

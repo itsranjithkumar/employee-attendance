@@ -4,7 +4,21 @@ import type React from "react"
 import { useRouter } from "next/navigation"
 
 import { api, setAuthToken } from "../utils/api"
-import { Users, Plus, Edit, Trash2, Save, X, Check, AlertCircle, Loader2 } from "lucide-react"
+import {
+  Users,
+  Plus,
+  Edit,
+  Trash2,
+  Save,
+  X,
+  Check,
+  AlertCircle,
+  Loader2,
+  Search,
+  Settings,
+  Shield,
+  Bell,
+} from "lucide-react"
 
 interface User {
   id: number
@@ -22,6 +36,7 @@ export default function AdminPage() {
   const [feedback, setFeedback] = useState("")
   const [feedbackType, setFeedbackType] = useState<"success" | "error" | "info">("info")
   const [isAdmin, setIsAdmin] = useState(false)
+  const [searchQuery, setSearchQuery] = useState("")
 
   useEffect(() => {
     const token = localStorage.getItem("token")
@@ -164,325 +179,400 @@ export default function AdminPage() {
     }
   }
 
+  // Filter users based on search query
+  const filteredUsers = users.filter(
+    (user) =>
+      user.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      user.email.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      user.role.toLowerCase().includes(searchQuery.toLowerCase()),
+  )
+
   if (authError) {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-gray-100 to-gray-200 flex items-center justify-center p-4">
-        <div className="max-w-xl w-full p-8 bg-white border border-gray-200 rounded-2xl shadow-xl text-center">
-          <AlertCircle className="h-12 w-12 text-red-500 mx-auto mb-4" />
-          <h2 className="text-xl font-semibold text-red-600 mb-2">Authentication Error</h2>
-          <p className="text-gray-700">{authError}</p>
+      <div className="min-h-screen bg-black flex items-center justify-center p-4">
+        <div className="max-w-xl w-full p-10 bg-zinc-900 rounded-3xl shadow-2xl text-center border border-zinc-800">
+          <div className="w-20 h-20 mx-auto rounded-full bg-red-500/10 flex items-center justify-center mb-6">
+            <AlertCircle className="h-10 w-10 text-red-500" />
+          </div>
+          <h2 className="text-2xl font-medium text-white mb-3">Authentication Error</h2>
+          <p className="text-zinc-400 mb-8">{authError}</p>
+          <button
+            onClick={() => router.push("/auth/login")}
+            className="w-full py-4 bg-white hover:bg-zinc-100 text-black font-medium rounded-2xl transition-colors"
+          >
+            Return to Login
+          </button>
         </div>
       </div>
     )
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-200">
-      <div className="w-full flex justify-center pt-8 pb-4">
-        <div className="flex items-center space-x-4">
-          {/* Elegant Admin Dashboard Logo - Grey/White/Black */}
-          <div className="bg-white rounded-2xl shadow-2xl border-2 border-gray-400 flex items-center px-4 py-2">
-            <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect x="4" y="4" width="40" height="40" rx="12" fill="#f3f4f6" />
-              <path d="M24 14c-4.418 0-8 2.686-8 6v2c0 3.314 3.582 6 8 6s8-2.686 8-6v-2c0-3.314-3.582-6-8-6zm0 14c-3.314 0-6 2.014-6 4.5V36h12v-3.5c0-2.486-2.686-4.5-6-4.5z" fill="#111827"/>
-              <circle cx="24" cy="20" r="4" fill="#fff"/>
-            </svg>
-            <span className="ml-4 text-3xl font-extrabold tracking-tight bg-gradient-to-r from-gray-800 to-gray-400 bg-clip-text text-transparent drop-shadow">Admin Dashboard</span>
+    <div className="min-h-screen bg-black text-white">
+      {/* Header */}
+      <header className="border-b border-zinc-800 backdrop-blur-lg bg-black/80 sticky top-0 z-10">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex justify-between items-center h-20 px-6">
+            <div className="flex items-center">
+              <span className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r text-white">
+                DESKBOARD
+              </span>
+              <span className="ml-2 text-sm bg-zinc-800 px-3 py-1 rounded-full text-zinc-400">Admin</span>
+            </div>
+
+            <div className="flex items-center space-x-6">
+              <div className="relative">
+                <button className="w-10 h-10 rounded-full bg-zinc-800 flex items-center justify-center text-zinc-400 hover:text-white transition-colors">
+                  <Settings className="w-5 h-5" />
+                </button>
+              </div>
+
+              <div className="relative">
+                <button className="w-10 h-10 rounded-full bg-zinc-800 flex items-center justify-center text-zinc-400 hover:text-white transition-colors">
+                  <Bell className="w-5 h-5" />
+                </button>
+                <span className="absolute top-0 right-0 w-3 h-3 bg-red-500 rounded-full border-2 border-black"></span>
+              </div>
+
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-white">
+                  <Shield className="w-5 h-5" />
+                </div>
+                <div className="hidden md:block">
+                  <p className="text-sm font-medium text-white">Admin User</p>
+                  <p className="text-xs text-zinc-400">System Administrator</p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-      <div className="max-w-7xl mx-auto">
-        <div className="bg-white border border-gray-200 rounded-3xl shadow-2xl p-10 mb-16">
-          <div className="flex items-center justify-between mb-12">
-            <h1 className="text-5xl font-extrabold text-gray-800 tracking-tight">
-            </h1>
+      </header>
+
+      <main className="max-w-7xl mx-auto px-6 py-10">
+        {/* Page Header */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12">
+          <div>
+            <h1 className="text-4xl font-bold text-white mb-3">User Management</h1>
+            <p className="text-zinc-400 text-lg">Manage system users and permissions</p>
+          </div>
+
+          <div className="mt-6 md:mt-0">
             <button
-              className="bg-gradient-to-r from-gray-400 to-gray-600 hover:from-gray-500 hover:to-gray-700 text-white font-semibold py-3 px-6 rounded-xl shadow-lg transition-all duration-300 transform hover:scale-105"
+              className="h-12 px-6 flex items-center justify-center rounded-full bg-white text-black font-medium hover:bg-zinc-100 transition-colors"
               onClick={() => router.push("/leave/admin")}
             >
               Leave Approval
             </button>
           </div>
+        </div>
 
-          <div className="flex flex-col md:flex-row gap-10">
-            <div className="flex-1">
-              <div className="flex justify-between items-center mb-8">
-                <h2 className="text-3xl font-semibold text-gray-800 flex items-center gap-3">
-                  <Users className="h-8 w-8 text-gray-400" />
-                  <span className="bg-clip-text text-transparent bg-gradient-to-r from-gray-700 to-gray-400 text-gray-700">
-                    User Management
-                  </span>
-                </h2>
+        {/* Main Content */}
+        <div className="bg-zinc-900 rounded-3xl border border-zinc-800 overflow-hidden shadow-2xl mb-10">
+          {/* Card Header */}
+          <div className="p-6 border-b border-zinc-800 flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div className="flex items-center">
+              <Users className="h-6 w-6 text-zinc-400 mr-3" />
+              <h2 className="text-xl font-medium text-white">System Users</h2>
+            </div>
+
+            <div className="flex flex-col md:flex-row gap-4 w-full md:w-auto">
+              {/* Search */}
+              <div className="relative w-full md:w-64">
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-zinc-500" />
+                <input
+                  type="text"
+                  placeholder="Search users..."
+                  className="w-full h-10 pl-10 pr-4 rounded-full bg-zinc-800 border border-zinc-700 text-zinc-200 placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                />
               </div>
 
-              {tab === "users" && (
-                <div>
-                  <div className="flex justify-between items-center mb-8">
-                    <button
-                      className={`flex items-center px-6 py-3 rounded-xl font-medium transition-all duration-300 ${
-                        showCreate
-                          ? "bg-gradient-to-r from-gray-400 to-gray-600 text-white shadow-lg"
-                          : "bg-gradient-to-r from-gray-200 to-gray-300 text-gray-700 hover:from-gray-300 hover:to-gray-400 shadow-lg"
-                      }`}
-                      onClick={() => setShowCreate((v) => !v)}
-                    >
-                      {showCreate ? (
-                        <>
-                          <X className="h-5 w-5 mr-2" />
-                          Cancel
-                        </>
-                      ) : (
-                        <>
-                          <Plus className="h-5 w-5 mr-2" />
-                          Create User
-                        </>
-                      )}
-                    </button>
-                  </div>
+              {/* Create User Button */}
+              <button
+                className={`h-10 px-4 rounded-full font-medium transition-all duration-300 flex items-center justify-center ${
+                  showCreate ? "bg-zinc-700 text-white" : "bg-purple-600 text-white hover:bg-purple-700"
+                }`}
+                onClick={() => setShowCreate((v) => !v)}
+              >
+                {showCreate ? (
+                  <>
+                    <X className="h-4 w-4 mr-2" />
+                    Cancel
+                  </>
+                ) : (
+                  <>
+                    <Plus className="h-4 w-4 mr-2" />
+                    Create User
+                  </>
+                )}
+              </button>
+            </div>
+          </div>
 
-                  {showCreate && (
-                    <form
-                      className="mb-10 p-8 bg-gray-50 rounded-2xl border border-gray-200 shadow-xl"
-                      onSubmit={handleCreateUser}
+          {/* Create User Form */}
+          {showCreate && (
+            <div className="p-6 border-b border-zinc-800 bg-zinc-800/50">
+              <form onSubmit={handleCreateUser}>
+                <h3 className="text-lg font-medium text-white mb-6">Create New User</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <label className="block text-sm font-medium text-zinc-400 mb-2">Name</label>
+                    <input
+                      className="w-full p-3 bg-zinc-800 border border-zinc-700 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition text-white"
+                      value={newName}
+                      onChange={(e) => setNewName(e.target.value)}
+                      required
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-zinc-400 mb-2">Email</label>
+                    <input
+                      type="email"
+                      className="w-full p-3 bg-zinc-800 border border-zinc-700 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition text-white"
+                      value={newEmail}
+                      onChange={(e) => setNewEmail(e.target.value)}
+                      required
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-zinc-400 mb-2">Password</label>
+                    <input
+                      type="password"
+                      className="w-full p-3 bg-zinc-800 border border-zinc-700 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition text-white"
+                      value={newPassword}
+                      onChange={(e) => setNewPassword(e.target.value)}
+                      required
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-zinc-400 mb-2">Role</label>
+                    <select
+                      className="w-full p-3 bg-zinc-800 border border-zinc-700 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition text-white"
+                      value={newRole}
+                      onChange={(e) => setNewRole(e.target.value)}
                     >
-                      <h3 className="text-2xl font-medium text-gray-800 mb-6">Create New User</h3>
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div>
-                          <label className="block text-sm font-medium text-gray-600 mb-2">Name</label>
+                      <option value="user">User</option>
+                      <option value="admin">Admin</option>
+                    </select>
+                  </div>
+                </div>
+                <div className="mt-6 flex justify-end">
+                  <button
+                    type="submit"
+                    className="flex items-center px-6 py-3 bg-purple-600 text-white rounded-xl hover:bg-purple-700 transition-all duration-300 disabled:opacity-50"
+                    disabled={loading}
+                  >
+                    {loading ? (
+                      <>
+                        <Loader2 className="h-5 w-5 mr-2 animate-spin" />
+                        Creating...
+                      </>
+                    ) : (
+                      <>
+                        <Check className="h-5 w-5 mr-2" />
+                        Create User
+                      </>
+                    )}
+                  </button>
+                </div>
+              </form>
+            </div>
+          )}
+
+          {/* Feedback Messages */}
+          {feedback && (
+            <div
+              className={`mx-6 my-4 p-4 rounded-xl ${
+                feedbackType === "success"
+                  ? "bg-green-500/10 border border-green-500/20 text-green-400"
+                  : feedbackType === "error"
+                    ? "bg-red-500/10 border border-red-500/20 text-red-400"
+                    : "bg-zinc-800 border border-zinc-700 text-zinc-400"
+              }`}
+            >
+              <p className="flex items-center">
+                {feedbackType === "success" && <Check className="h-5 w-5 mr-2" />}
+                {feedbackType === "error" && <AlertCircle className="h-5 w-5 mr-2" />}
+                {feedbackType === "info" && <AlertCircle className="h-5 w-5 mr-2" />}
+                {Array.isArray(feedback)
+                  ? feedback.map((f, idx) => (
+                      <span key={idx} className="block">
+                        {typeof f === "object" ? JSON.stringify(f) : String(f)}
+                      </span>
+                    ))
+                  : typeof feedback === "object"
+                    ? JSON.stringify(feedback)
+                    : feedback}
+              </p>
+            </div>
+          )}
+
+          {/* Loading State */}
+          {loading && !showCreate && (
+            <div className="flex justify-center my-10">
+              <div className="flex items-center space-x-3 text-zinc-400">
+                <Loader2 className="h-6 w-6 animate-spin" />
+                <span className="text-lg">Loading users...</span>
+              </div>
+            </div>
+          )}
+
+          {/* Users Table */}
+          <div className="overflow-x-auto">
+            <table className="w-full border-collapse">
+              <thead>
+                <tr className="bg-zinc-800/50 text-left">
+                  <th className="px-6 py-4 text-xs font-medium text-zinc-400 uppercase tracking-wider">ID</th>
+                  <th className="px-6 py-4 text-xs font-medium text-zinc-400 uppercase tracking-wider">Name</th>
+                  <th className="px-6 py-4 text-xs font-medium text-zinc-400 uppercase tracking-wider">Email</th>
+                  <th className="px-6 py-4 text-xs font-medium text-zinc-400 uppercase tracking-wider">Role</th>
+                  <th className="px-6 py-4 text-right text-xs font-medium text-zinc-400 uppercase tracking-wider">
+                    Actions
+                  </th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-zinc-800">
+                {filteredUsers.length === 0 ? (
+                  <tr className="bg-zinc-900">
+                    <td colSpan={5} className="text-center p-8 text-zinc-500">
+                      No users found.
+                    </td>
+                  </tr>
+                ) : (
+                  filteredUsers.map((u) =>
+                    editUserId === u.id ? (
+                      <tr key={u.id} className="bg-zinc-800/30">
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-zinc-400">{u.id}</td>
+                        <td className="px-6 py-4 whitespace-nowrap">
                           <input
-                            className="w-full p-3 bg-white border border-gray-300 rounded-xl focus:ring-2 focus:ring-gray-400 focus:border-gray-400 outline-none transition text-gray-800"
-                            value={newName}
-                            onChange={(e) => setNewName(e.target.value)}
-                            required
+                            className="w-full p-3 bg-zinc-800 border border-zinc-700 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition text-white"
+                            value={editName}
+                            onChange={(e) => setEditName(e.target.value)}
                           />
-                        </div>
-                        <div>
-                          <label className="block text-sm font-medium text-gray-600 mb-2">Email</label>
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap">
                           <input
-                            type="email"
-                            className="w-full p-3 bg-white border border-gray-300 rounded-xl focus:ring-2 focus:ring-gray-400 focus:border-gray-400 outline-none transition text-gray-800"
-                            value={newEmail}
-                            onChange={(e) => setNewEmail(e.target.value)}
-                            required
+                            className="w-full p-3 bg-zinc-800 border border-zinc-700 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition text-white"
+                            value={editEmail}
+                            onChange={(e) => setEditEmail(e.target.value)}
                           />
-                        </div>
-                        <div>
-                          <label className="block text-sm font-medium text-gray-600 mb-2">Password</label>
-                          <input
-                            type="password"
-                            className="w-full p-3 bg-white border border-gray-300 rounded-xl focus:ring-2 focus:ring-gray-400 focus:border-gray-400 outline-none transition text-gray-800"
-                            value={newPassword}
-                            onChange={(e) => setNewPassword(e.target.value)}
-                            required
-                          />
-                        </div>
-                        <div>
-                          <label className="block text-sm font-medium text-gray-600 mb-2">Role</label>
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap">
                           <select
-                            className="w-full p-3 bg-white border border-gray-300 rounded-xl focus:ring-2 focus:ring-gray-400 focus:border-gray-400 outline-none transition text-gray-800"
-                            value={newRole}
-                            onChange={(e) => setNewRole(e.target.value)}
+                            className="w-full p-3 bg-zinc-800 border border-zinc-700 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition text-white"
+                            value={editRole}
+                            onChange={(e) => setEditRole(e.target.value)}
+                            required
                           >
                             <option value="user">User</option>
                             <option value="admin">Admin</option>
                           </select>
-                        </div>
-                      </div>
-                      <div className="mt-6 flex justify-end">
-                        <button
-                          type="submit"
-                          className="flex items-center px-6 py-3 bg-gradient-to-r from-gray-600 to-gray-700 text-white rounded-xl hover:from-gray-700 hover:to-gray-800 transition-all duration-300 shadow-lg disabled:opacity-50 transform hover:scale-105"
-                          disabled={loading}
-                        >
-                          {loading ? (
-                            <>
-                              <Loader2 className="h-5 w-5 mr-2 animate-spin" />
-                              Creating...
-                            </>
-                          ) : (
-                            <>
-                              <Check className="h-5 w-5 mr-2" />
-                              Create User
-                            </>
-                          )}
-                        </button>
-                      </div>
-                    </form>
-                  )}
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          <div className="space-y-3">
+                            <input
+                              type="password"
+                              className="w-full p-3 bg-zinc-800 border border-zinc-700 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition text-white"
+                              placeholder="New password (leave blank to keep unchanged)"
+                              value={editPassword}
+                              onChange={(e) => setEditPassword(e.target.value)}
+                              autoComplete="new-password"
+                            />
+                            <div className="flex justify-end space-x-3">
+                              <button
+                                className="flex items-center px-4 py-2 bg-purple-600 text-white rounded-xl hover:bg-purple-700 transition-all duration-300 font-medium"
+                                onClick={handleEditUser}
+                                disabled={loading}
+                              >
+                                <Save className="h-4 w-4 mr-2" />
+                                Save
+                              </button>
+                              <button
+                                className="flex items-center px-4 py-2 bg-zinc-700 text-white rounded-xl hover:bg-zinc-600 transition-all duration-300 font-medium"
+                                onClick={() => setEditUserId(null)}
+                              >
+                                <X className="h-4 w-4 mr-2" />
+                                Cancel
+                              </button>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                    ) : (
+                      <tr key={u.id} className="bg-zinc-900 hover:bg-zinc-800/50 transition-colors">
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-zinc-400">{u.id}</td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-white">{u.name}</td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-zinc-300">{u.email}</td>
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          <span
+                            className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${
+                              u.role === "admin"
+                                ? "bg-purple-500/20 text-purple-400 border border-purple-500/30"
+                                : "bg-zinc-700 text-zinc-300 border border-zinc-600"
+                            }`}
+                          >
+                            {u.role}
+                          </span>
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                          <div className="flex justify-end space-x-3">
+                            <button
+                              className="flex items-center px-4 py-2 bg-zinc-800 text-zinc-300 border border-zinc-700 rounded-xl hover:bg-zinc-700 hover:text-white transition-all duration-300"
+                              onClick={() => startEditUser(u)}
+                              disabled={loading}
+                            >
+                              <Edit className="h-4 w-4 mr-2" />
+                              Edit
+                            </button>
+                            <button
+                              className="flex items-center px-4 py-2 bg-red-500/10 text-red-400 border border-red-500/20 rounded-xl hover:bg-red-500/20 transition-all duration-300"
+                              onClick={() => handleDeleteUser(u.id)}
+                              disabled={loading}
+                            >
+                              <Trash2 className="h-4 w-4 mr-2" />
+                              Delete
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                    ),
+                  )
+                )}
+              </tbody>
+            </table>
+          </div>
 
-                  {loading && !showCreate && (
-                    <div className="flex justify-center my-10">
-                      <div className="flex items-center space-x-3 text-gray-500">
-                        <Loader2 className="h-6 w-6 animate-spin" />
-                        <span className="text-lg">Loading users...</span>
-                      </div>
-                    </div>
-                  )}
-
-                  {feedback && (
-                    <div
-                      className={`mb-6 p-4 rounded-xl ${
-                        feedbackType === "success"
-                          ? "bg-green-100 border border-green-300 text-green-700"
-                          : feedbackType === "error"
-                            ? "bg-red-100 border border-red-300 text-red-700"
-                            : "bg-gray-100 border border-gray-300 text-gray-700"
-                      }`}
-                    >
-                      <p className="flex items-center">
-                        {feedbackType === "success" && <Check className="h-5 w-5 mr-2" />}
-                        {feedbackType === "error" && <AlertCircle className="h-5 w-5 mr-2" />}
-                        {feedbackType === "info" && <AlertCircle className="h-5 w-5 mr-2" />}
-                        {Array.isArray(feedback)
-                          ? feedback.map((f, idx) => (
-                              <span key={idx} className="block">
-                                {typeof f === "object" ? JSON.stringify(f) : String(f)}
-                              </span>
-                            ))
-                          : typeof feedback === "object"
-                            ? JSON.stringify(feedback)
-                            : feedback}
-                      </p>
-                    </div>
-                  )}
-
-                  <div className="overflow-hidden rounded-2xl border border-gray-200 shadow-2xl">
-                    <table className="w-full border-collapse">
-                      <thead>
-                        <tr className="bg-gradient-to-r from-gray-100 to-gray-200">
-                          <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            ID
-                          </th>
-                          <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Name
-                          </th>
-                          <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Email
-                          </th>
-                          <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Role
-                          </th>
-                          <th className="px-6 py-4 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Actions
-                          </th>
-                        </tr>
-                      </thead>
-                      <tbody className="divide-y divide-gray-200">
-                        {users.length === 0 ? (
-                          <tr className="bg-gray-50">
-                            <td colSpan={5} className="text-center p-8 text-gray-400">
-                              No users found.
-                            </td>
-                          </tr>
-                        ) : (
-                          users.map((u) =>
-                            editUserId === u.id ? (
-                              <tr key={u.id} className="bg-gray-100">
-                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{u.id}</td>
-                                <td className="px-6 py-4 whitespace-nowrap">
-                                  <input
-                                    className="w-full p-3 bg-white border border-gray-300 rounded-xl focus:ring-2 focus:ring-gray-400 focus:border-gray-400 outline-none transition text-gray-800"
-                                    value={editName}
-                                    onChange={(e) => setEditName(e.target.value)}
-                                  />
-                                </td>
-                                <td className="px-6 py-4 whitespace-nowrap">
-                                  <input
-                                    className="w-full p-3 bg-white border border-gray-300 rounded-xl focus:ring-2 focus:ring-gray-400 focus:border-gray-400 outline-none transition text-gray-800"
-                                    value={editEmail}
-                                    onChange={(e) => setEditEmail(e.target.value)}
-                                  />
-                                </td>
-                                <td className="px-6 py-4 whitespace-nowrap">
-                                  <select
-                                    className="w-full p-3 bg-white border border-gray-300 rounded-xl focus:ring-2 focus:ring-gray-400 focus:border-gray-400 outline-none transition text-gray-800"
-                                    value={editRole}
-                                    onChange={(e) => setEditRole(e.target.value)}
-                                    required
-                                  >
-                                    <option value="user">User</option>
-                                    <option value="admin">Admin</option>
-                                  </select>
-                                </td>
-                                <td className="px-6 py-4 whitespace-nowrap">
-                                  <div className="space-y-3">
-                                    <input
-                                      type="password"
-                                      className="w-full p-3 bg-white border border-gray-300 rounded-xl focus:ring-2 focus:ring-gray-400 focus:border-gray-400 outline-none transition text-gray-800"
-                                      placeholder="New password (leave blank to keep unchanged)"
-                                      value={editPassword}
-                                      onChange={(e) => setEditPassword(e.target.value)}
-                                      autoComplete="new-password"
-                                    />
-                                    <div className="flex justify-end space-x-3">
-                                      <button
-                                        className="flex items-center px-4 py-2 bg-gradient-to-r from-gray-600 to-gray-700 text-white rounded-xl hover:from-gray-700 hover:to-gray-800 transition-all duration-300 shadow-lg font-semibold transform hover:scale-105"
-                                        onClick={handleEditUser}
-                                        disabled={loading}
-                                      >
-                                        <Save className="h-4 w-4 mr-2" />
-                                        Save
-                                      </button>
-                                      <button
-                                        className="flex items-center px-4 py-2 bg-gradient-to-r from-red-400 to-red-600 text-white rounded-xl hover:from-red-500 hover:to-red-700 transition-all duration-300 shadow-lg font-semibold transform hover:scale-105"
-                                        onClick={() => setEditUserId(null)}
-                                      >
-                                        <X className="h-4 w-4 mr-2" />
-                                        Cancel
-                                      </button>
-                                    </div>
-                                  </div>
-                                </td>
-                              </tr>
-                            ) : (
-                              <tr key={u.id} className="bg-white hover:bg-gray-50 transition-colors">
-                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{u.id}</td>
-                                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{u.name}</td>
-                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{u.email}</td>
-                                <td className="px-6 py-4 whitespace-nowrap">
-                                  <span
-                                    className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${
-                                      u.role === "admin"
-                                        ? "bg-gray-900/10 text-gray-900 border border-gray-400"
-                                        : "bg-gray-200 text-gray-700 border border-gray-300"
-                                    }`}
-                                  >
-                                    {u.role}
-                                  </span>
-                                </td>
-                                <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                  <div className="flex justify-end space-x-3">
-                                    <button
-                                      className="flex items-center px-4 py-2 bg-gray-100 text-gray-700 border border-gray-300 rounded-xl hover:bg-gray-200 transition-all duration-300 transform hover:scale-105"
-                                      onClick={() => startEditUser(u)}
-                                      disabled={loading}
-                                    >
-                                      <Edit className="h-4 w-4 mr-2" />
-                                      Edit
-                                    </button>
-                                    <button
-                                      className="flex items-center px-4 py-2 bg-red-100 text-red-700 border border-red-300 rounded-xl hover:bg-red-200 transition-all duration-300 transform hover:scale-105"
-                                      onClick={() => handleDeleteUser(u.id)}
-                                      disabled={loading}
-                                    >
-                                      <Trash2 className="h-4 w-4 mr-2" />
-                                      Delete
-                                    </button>
-                                  </div>
-                                </td>
-                              </tr>
-                            ),
-                          )
-                        )}
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              )}
+          {/* Table Footer */}
+          <div className="px-6 py-4 bg-zinc-900 border-t border-zinc-800 flex items-center justify-between">
+            <div className="text-sm text-zinc-500">
+              Showing {filteredUsers.length} of {users.length} users
+            </div>
+            <div className="flex items-center space-x-2">
+              <button className="px-3 py-1 rounded-md bg-zinc-800 text-zinc-400 hover:bg-zinc-700 hover:text-white transition-colors">
+                Previous
+              </button>
+              <button className="px-3 py-1 rounded-md bg-zinc-800 text-zinc-400 hover:bg-zinc-700 hover:text-white transition-colors">
+                Next
+              </button>
             </div>
           </div>
         </div>
-      </div>
+      </main>
+
+      {/* Footer */}
+      <footer className="border-t border-zinc-800 mt-16">
+        <div className="max-w-7xl mx-auto px-6 py-8">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+            <p className="text-sm text-zinc-500">© 2024 Deskboard. All rights reserved.</p>
+            <div className="flex gap-6">
+              <button className="text-sm text-zinc-500 hover:text-white transition-colors">Privacy Policy</button>
+              <button className="text-sm text-zinc-500 hover:text-white transition-colors">Terms of Service</button>
+              <button className="text-sm text-zinc-500 hover:text-white transition-colors">Help Center</button>
+            </div>
+          </div>
+        </div>
+      </footer>
     </div>
   )
 }

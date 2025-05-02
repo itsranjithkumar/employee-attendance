@@ -138,7 +138,7 @@ export default function DashboardPage() {
         <div className="max-w-7xl mx-auto">
           <div className="flex justify-between items-center h-20 px-6">
             <div className="flex items-center">
-              <span className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-500 to-red-500">
+              <span className="text-2xl font-bold bg-clip-text text-transparent text-white">
                 DESKBOARD
               </span>
             </div>
