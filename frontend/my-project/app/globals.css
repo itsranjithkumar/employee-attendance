@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&display=swap');
 @import "tailwindcss";
 
 :root {
@@ -20,7 +21,144 @@
 }
 
 body {
-  background: var(--background);
+  background: linear-gradient(135deg, #141e30 0%, #243b55 100%);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.luxury-font {
+  font-family: 'Cinzel', serif;
+  letter-spacing: 2px;
+}
+
+.luxury-btn {
+  box-shadow: 0 6px 30px 0 rgba(160, 160, 160, 0.25), 0 1.5px 6px 1px rgba(255,255,255,0.25) inset;
+  position: relative;
+  overflow: hidden;
+  transition: box-shadow 0.3s, border 0.3s, background 0.3s;
+  text-shadow: 0 1px 8px rgba(255,255,255,0.3);
+}
+
+.luxury-btn span {
+  position: relative;
+  z-index: 2;
+}
+
+.luxury-btn::before {
+  content: '';
+  position: absolute;
+  top: -60%;
+  left: -60%;
+  width: 220%;
+  height: 220%;
+  background: linear-gradient(120deg, rgba(255,255,255,0.0) 60%, rgba(255,255,255,0.35) 100%);
+  transform: rotate(25deg);
+  transition: all 0.7s cubic-bezier(0.4,0,0.2,1);
+  z-index: 1;
+}
+
+.luxury-btn:hover::before {
+  left: 100%;
+  top: 100%;
+}
+
+.luxury-btn:active {
+  box-shadow: 0 2px 8px 0 rgba(160, 160, 160, 0.25), 0 1.5px 6px 1px rgba(255,255,255,0.18) inset;
+}
+
+.rich-luxury-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: linear-gradient(135deg, rgba(255,255,255,0.4) 0%, rgba(255,215,0,0.12) 100%), linear-gradient(90deg, #f5f6fa 0%, #d1d5db 50%, #f9fafb 100%);
+  border: 2.5px solid #ffd700;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.25), 0 2px 12px 2px rgba(255,215,0,0.10) inset;
+  border-radius: 2.5rem;
+  padding: 1rem 3.5rem;
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: #212121;
+  text-shadow: 0 2px 12px rgba(255,255,255,0.25);
+  position: relative;
+  overflow: hidden;
+  transition: box-shadow 0.3s, border 0.3s, background 0.3s, transform 0.15s;
+  backdrop-filter: blur(6px);
+  z-index: 0;
+  letter-spacing: 1px;
+}
+
+.rich-luxury-btn::before {
+  content: '';
+  position: absolute;
+  left: -60%;
+  top: -60%;
+  width: 220%;
+  height: 220%;
+  background: linear-gradient(120deg, rgba(255,255,255,0.0) 60%, rgba(255,255,255,0.25) 100%);
+  transform: rotate(25deg);
+  transition: all 0.7s cubic-bezier(0.4,0,0.2,1);
+  z-index: 1;
+}
+
+.rich-luxury-btn:hover::before {
+  left: 100%;
+  top: 100%;
+}
+
+.rich-luxury-btn:active {
+  box-shadow: 0 4px 16px 0 rgba(31, 38, 135, 0.20), 0 2px 8px 2px rgba(255,215,0,0.08) inset;
+  transform: scale(0.97);
+}
+
+.rich-luxury-btn .luxury-icon {
+  font-size: 2rem;
+  color: #ffd700;
+  filter: drop-shadow(0 1px 6px #fff6b0);
+  z-index: 2;
+}
+
+.rich-luxury-btn span {
+  position: relative;
+  z-index: 2;
+}
+
+.rich-luxury-btn {
+  animation: luxury-pulse 2.5s infinite alternate cubic-bezier(0.4,0,0.2,1);
+}
+
+@keyframes luxury-pulse {
+  0% { box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.25), 0 2px 12px 2px rgba(255,215,0,0.10) inset; }
+  100% { box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.30), 0 4px 18px 4px rgba(255,215,0,0.18) inset; }
+}
+
+.apple-btn {
+  display: inline-block;
+  background: #111;
+  color: #fff;
+  border-radius: 9999px;
+  border: 1.5px solid #222;
+  box-shadow: 0 2px 8px 0 rgba(0,0,0,0.18);
+  font-size: 1.25rem;
+  font-weight: 600;
+  padding: 0.85rem 3rem;
+  outline: none;
+  transition: background 0.18s, box-shadow 0.18s, border 0.18s, color 0.18s, transform 0.10s;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+}
+.apple-btn:hover, .apple-btn:focus {
+  background: #222;
+  color: #fff;
+  border-color: #333;
+  box-shadow: 0 4px 16px 0 rgba(0,0,0,0.22);
+  transform: translateY(-1px) scale(1.03);
+}
+.apple-btn:active {
+  background: #181818;
+  color: #fff;
+  border-color: #222;
+  box-shadow: 0 2px 8px 0 rgba(0,0,0,0.15);
+  transform: scale(0.98);
+}
+
+

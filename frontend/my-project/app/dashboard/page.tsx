@@ -60,43 +60,45 @@ export default function DashboardPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-100">
-      <main className="max-w-7xl mx-auto p-10">
+    <main className="min-h-screen w-full flex flex-col bg-gradient-to-br from-[#f5f6fa] via-[#d1d5db] to-[#a3a3a3] relative overflow-hidden">
+      {/* Shine overlay */}
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-white/60 via-transparent to-white/20 mix-blend-screen" style={{ zIndex:1 }} />
+      <div className="w-full max-w-7xl mx-auto p-10 relative z-10">
         <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-8 gap-4">
           <div>
-            <h1 className="text-3xl font-extrabold text-gray-900 mb-1">Welcome Back{user?.name ? `, ${user.name}` : ""} 👋</h1>
+            <h1 className="text-4xl md:text-5xl font-extrabold luxury-font text-gray-900 mb-1 text-center md:text-left">Welcome Back{user?.name ? `, ${user.name}` : ""} 👋</h1>
             <p className="text-gray-500 text-base">Here's a summary of your account activity.</p>
           </div>
           <div className="flex gap-3">
-            <button className="bg-gradient-to-r from-green-600 to-green-400 hover:from-green-700 hover:to-green-500 text-white font-bold rounded-xl px-6 py-3 shadow text-base tracking-wide transition-all duration-150" onClick={() => router.push('/attendance')}>Start Day / Attendance</button>
-            <button className="bg-gradient-to-r from-blue-600 to-blue-400 hover:from-blue-700 hover:to-blue-500 text-white font-bold rounded-xl px-6 py-3 shadow text-base tracking-wide transition-all duration-150" onClick={() => router.push('/leave')}>Apply Leave</button>
-            <button className="bg-gradient-to-r from-purple-600 to-purple-400 hover:from-purple-700 hover:to-purple-500 text-white font-bold rounded-xl px-6 py-3 shadow text-base tracking-wide transition-all duration-150" onClick={() => router.push('/calendar')}>View Calendar</button>
+            <button className="apple-btn" onClick={() => router.push('/attendance')}>Start Day</button>
+            <button className="apple-btn" onClick={() => router.push('/leave')}>Apply Leave</button>
+            <button className="apple-btn" onClick={() => router.push('/calendar')}>View Calendar</button>
           </div>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-          <div className="bg-white rounded-2xl shadow-lg p-6 flex flex-col items-start border-t-4 border-blue-500 w-full">
+          <div className="bg-white/20 backdrop-blur-lg rounded-2xl shadow-2xl p-6 flex flex-col items-start border border-white/30 border-t-4 border-blue-500 w-full">
             <span className="text-gray-400 text-xs font-bold uppercase mb-2">Present</span>
             <span className="text-3xl font-extrabold text-blue-700 mb-1">{attendance?.present ?? '-'}</span>
             <span className="text-gray-600 text-sm">Days Present</span>
           </div>
-          <div className="bg-white rounded-2xl shadow-lg p-6 flex flex-col items-start border-t-4 border-red-500 w-full">
+          <div className="bg-white/20 backdrop-blur-lg rounded-2xl shadow-2xl p-6 flex flex-col items-start border border-white/30 border-t-4 border-red-500 w-full">
             <span className="text-gray-400 text-xs font-bold uppercase mb-2">Absent</span>
             <span className="text-3xl font-extrabold text-red-600 mb-1">{attendance?.absent ?? '-'}</span>
             <span className="text-gray-600 text-sm">Days Absent</span>
           </div>
-          <div className="bg-white rounded-2xl shadow-lg p-6 flex flex-col items-start border-t-4 border-yellow-500 w-full">
+          <div className="bg-white/20 backdrop-blur-lg rounded-2xl shadow-2xl p-6 flex flex-col items-start border border-white/30 border-t-4 border-yellow-500 w-full">
             <span className="text-gray-400 text-xs font-bold uppercase mb-2">Leaves</span>
             <span className="text-3xl font-extrabold text-yellow-600 mb-1">{attendance?.leaves ?? '-'}</span>
             <span className="text-gray-600 text-sm">Leaves Taken</span>
           </div>
-          <div className="bg-white rounded-2xl shadow-lg p-6 flex flex-col items-start border-t-4 border-green-500 w-full">
+          <div className="bg-white/20 backdrop-blur-lg rounded-2xl shadow-2xl p-6 flex flex-col items-start border border-white/30 border-t-4 border-green-500 w-full">
             <span className="text-gray-400 text-xs font-bold uppercase mb-2">Total</span>
             <span className="text-3xl font-extrabold text-green-700 mb-1">{attendance?.total ?? '-'}</span>
             <span className="text-gray-600 text-sm">Total Records</span>
           </div>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-          <div className="bg-white rounded-2xl shadow-lg p-8 flex flex-col items-center border border-gray-100 w-full">
+          <div className="bg-white/20 backdrop-blur-lg rounded-2xl shadow-2xl p-8 flex flex-col items-center border border-white/30 w-full">
             <h2 className="text-lg font-bold text-gray-900 mb-3">Leave Balance</h2>
             <div className="flex gap-8">
               <div className="flex flex-col items-center">
@@ -113,12 +115,12 @@ export default function DashboardPage() {
               </div>
             </div>
           </div>
-          <div className="bg-white rounded-2xl shadow-lg p-8 flex flex-col items-center border border-gray-100 w-full col-span-2">
+          <div className="bg-white/20 backdrop-blur-lg rounded-2xl shadow-2xl p-8 flex flex-col items-center border border-white/30 w-full col-span-2">
             <h2 className="text-lg font-bold text-gray-900 mb-3">Recent Activity</h2>
             <div className="text-gray-400 text-sm">(Coming soon: charts, tables, analytics...)</div>
           </div>
         </div>
-      </main>
-    </div>
+      </div>
+    </main>
   );
 }

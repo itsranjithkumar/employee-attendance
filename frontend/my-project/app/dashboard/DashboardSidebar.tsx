@@ -13,8 +13,8 @@ export default function DashboardSidebar({ active }: { active: string }) {
       onClick={() => router.push(href)}
       className={`flex items-center gap-3 px-4 py-3 rounded-xl w-full text-left transition font-semibold text-base ${
         isActive
-          ? "bg-gradient-to-r from-blue-600 to-blue-400 text-white shadow-lg"
-          : "text-gray-400 hover:bg-gray-100 hover:text-gray-900"
+          ? "bg-gradient-to-r from-blue-700 to-blue-500 text-white shadow-2xl backdrop-blur-sm"
+          : "text-gray-200 hover:bg-white/20 hover:text-white backdrop-blur-sm"
       }`}
     >
       {icon}
@@ -23,10 +23,10 @@ export default function DashboardSidebar({ active }: { active: string }) {
   );
 
   return (
-    <aside className="h-full bg-white shadow-xl rounded-3xl flex flex-col py-8 px-2 w-60 min-w-[220px]">
+    <aside className="h-full bg-white/10 backdrop-blur-lg border border-white/30 shadow-2xl rounded-3xl flex flex-col py-8 px-4 w-64 min-w-[240px]">
       <div className="flex items-center gap-3 px-6 mb-10">
-        <span className="inline-block w-8 h-8 bg-blue-700 rounded-full" />
-        <span className="font-extrabold text-lg text-gray-900 tracking-tight">DESKBOARD</span>
+        <span className="inline-block w-10 h-10 bg-white/30 rounded-full backdrop-blur-sm" />
+        <span className="font-extrabold text-xl luxury-font text-white tracking-tight">DESKBOARD</span>
       </div>
       <nav className="flex flex-col gap-2 flex-1">
         {navItem("Dashboard", <span className="material-icons">dashboard</span>, "/dashboard", active === "dashboard")}
