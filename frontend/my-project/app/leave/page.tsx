@@ -119,7 +119,7 @@ export default function LeavePage() {
   }
 
   return (
-    <div className="max-w-5xl mx-auto mt-16 p-8 bg-[#f5f5f7] rounded-3xl shadow-sm">
+    <div className="w-full min-h-screen p-8 bg-[#f5f5f7]">
       <h1 className="text-3xl font-semibold mb-8 text-gray-900 tracking-tight">Leave Management</h1>
 
       {/* Leave Balances */}
@@ -154,7 +154,7 @@ export default function LeavePage() {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         {/* Apply for Leave Form */}
-        <div className="bg-white p-6 rounded-2xl shadow-sm">
+        <div className="w-full p-6">
           <h2 className="text-xl font-medium mb-6 text-gray-900">Apply for Leave</h2>
           <form className="space-y-5" onSubmit={handleApplyLeave}>
             <div>
@@ -221,9 +221,9 @@ export default function LeavePage() {
         </div>
 
         {/* Leave Requests */}
-        <div className="bg-white p-6 rounded-2xl shadow-sm">
+        <div className="w-full p-6">
           <h2 className="text-xl font-medium mb-6 text-gray-900">My Leave Requests</h2>
-          <div className="overflow-hidden rounded-xl border border-gray-200">
+          <div className="overflow-hidden border border-gray-200">
             {leaveRequests.length === 0 ? (
               <div className="text-center p-8 text-gray-500">
                 <Clock className="w-10 h-10 mx-auto mb-2 text-gray-400" />

@@ -21,6 +21,7 @@ export default function AttendancePage() {
   const [endTime, setEndTime] = useState<string | null>(null)
   const [elapsed, setElapsed] = useState(0) // seconds
   const [breaks, setBreaks] = useState<{ break_in: string; break_out: string | null }[]>([])
+  const [currentBreakElapsed, setCurrentBreakElapsed] = useState(0) // seconds for ongoing break
 
   // Parse server timestamp (assume UTC) into Date object
   function parseDateUTC(dateStr: string): Date {
@@ -48,6 +49,39 @@ export default function AttendancePage() {
     if (h > 0) str += `${h} hour${h > 1 ? "s" : ""} `
     str += `${m} minute${m !== 1 ? "s" : ""}`
     return str.trim()
+  }
+
+  // Compute duration for each break: static or live for ongoing
+  function getBreakDuration(b: { break_in: string; break_out: string | null }) {
+    if (b.break_out) {
+      return Math.floor((parseDateUTC(b.break_out).getTime() - parseDateUTC(b.break_in).getTime()) / 1000)
+    }
+    return currentBreakElapsed
+  }
+
+  // Helper: Format break duration in hh:mm:ss
+  function formatBreakDuration(seconds: number) {
+    const h = Math.floor(seconds / 3600)
+      .toString()
+      .padStart(2, "0")
+    const m = Math.floor((seconds % 3600) / 60)
+      .toString()
+      .padStart(2, "0")
+    const s = (seconds % 60).toString().padStart(2, "0")
+    return `${h}:${m}:${s}`
+  }
+
+  function getTotalBreakSeconds() {
+    let total = 0
+    for (const b of breaks) {
+      if (b.break_in) {
+        const inTime = parseDateUTC(b.break_in)
+        const outTime = b.break_out ? parseDateUTC(b.break_out) : new Date()
+        if (b.break_out) total += Math.max(0, (outTime.getTime() - inTime.getTime()) / 1000)
+        else if (status.onBreak) total += Math.max(0, (outTime.getTime() - inTime.getTime()) / 1000)
+      }
+    }
+    return Math.floor(total)
   }
 
   // Set token from localStorage on mount
@@ -84,7 +118,7 @@ export default function AttendancePage() {
           else if (status.onBreak) total += Math.max(0, (outTime.getTime() - inTime.getTime()) / 1000)
         }
       }
-      return total
+      return Math.floor(total)
     }
     if (status.started && !status.ended && startTime) {
       interval = setInterval(() => {
@@ -106,6 +140,20 @@ export default function AttendancePage() {
       if (interval) clearInterval(interval)
     }
   }, [status.started, status.ended, status.onBreak, startTime, endTime, breaks])
+
+  useEffect(() => {
+    let interval: NodeJS.Timeout
+    if (status.onBreak && breaks.length > 0) {
+      const last = breaks[breaks.length - 1]
+      interval = setInterval(() => {
+        const sec = Math.floor((Date.now() - parseDateUTC(last.break_in).getTime()) / 1000)
+        setCurrentBreakElapsed(sec)
+      }, 1000)
+    } else {
+      setCurrentBreakElapsed(0)
+    }
+    return () => interval && clearInterval(interval)
+  }, [status.onBreak, breaks])
 
   const handleAction = async (action: "start" | "end" | "break-in" | "break-out") => {
     if (showWorkSummary) return // Prevent multiple modals
@@ -199,31 +247,6 @@ export default function AttendancePage() {
       .padStart(2, "0")
     const secs = (seconds % 60).toString().padStart(2, "0")
     return `${hours}:${minutes}:${secs}`
-  }
-
-  // Helper to format break duration in hh:mm:ss
-  function formatBreakDuration(seconds: number) {
-    const h = Math.floor(seconds / 3600)
-      .toString()
-      .padStart(2, "0")
-    const m = Math.floor((seconds % 3600) / 60)
-      .toString()
-      .padStart(2, "0")
-    const s = (seconds % 60).toString().padStart(2, "0")
-    return `${h}:${m}:${s}`
-  }
-
-  function getTotalBreakSeconds() {
-    let total = 0
-    for (const b of breaks) {
-      if (b.break_in) {
-        const inTime = parseDateUTC(b.break_in)
-        const outTime = b.break_out ? parseDateUTC(b.break_out) : new Date()
-        if (b.break_out) total += Math.max(0, (outTime.getTime() - inTime.getTime()) / 1000)
-        else if (status.onBreak) total += Math.max(0, (outTime.getTime() - inTime.getTime()) / 1000)
-      }
-    }
-    return total
   }
 
   const getStatusText = () => {
@@ -393,11 +416,7 @@ export default function AttendancePage() {
                         </div>
 
                         <div className="mt-2 md:mt-0 px-3 py-1 rounded-full bg-zinc-200 text-zinc-700 text-sm font-medium">
-                          {formatBreakDuration(
-                            b.break_out
-                              ? (parseDateUTC(b.break_out).getTime() - parseDateUTC(b.break_in).getTime()) / 1000
-                              : (new Date().getTime() - parseDateUTC(b.break_in).getTime()) / 1000,
-                          )}
+                          {formatBreakDuration(getBreakDuration(b))}
                         </div>
                       </div>
                     ))}

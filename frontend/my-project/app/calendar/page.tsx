@@ -130,7 +130,7 @@ export default function CalendarPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-50 to-slate-100 py-12 px-4">
-      <div className="max-w-3xl mx-auto rounded-2xl overflow-hidden shadow-2xl bg-white border border-slate-100">
+      <div className="w-full min-h-screen bg-white">
         <div className="bg-gradient-to-r from-slate-800 to-slate-900 text-white p-6 md:p-8">
           <h1 className="text-2xl md:text-3xl font-bold tracking-tight">Attendance Calendar</h1>
           <p className="text-slate-300 mt-2 text-sm md:text-base">Track your attendance records</p>
