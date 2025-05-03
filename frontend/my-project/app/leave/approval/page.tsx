@@ -33,7 +33,7 @@ export default function LeaveApprovalPage() {
     try {
       const res = await api.get("/admin/leave-requests");
       setRequests(res.data);
-    } catch (err: any) {
+    } catch {
       setFeedback("Failed to fetch leave requests.");
       setFeedbackType("error");
     } finally {

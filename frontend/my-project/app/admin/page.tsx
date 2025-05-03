@@ -32,10 +32,8 @@ export default function AdminPage() {
   const [users, setUsers] = useState<User[]>([])
   const [authError, setAuthError] = useState("")
   const [loading, setLoading] = useState(false)
-  const [tab, setTab] = useState<"users" | "attendance">("users")
   const [feedback, setFeedback] = useState("")
   const [feedbackType, setFeedbackType] = useState<"success" | "error" | "info">("info")
-  const [isAdmin, setIsAdmin] = useState(false)
   const [searchQuery, setSearchQuery] = useState("")
 
   useEffect(() => {
@@ -46,7 +44,6 @@ export default function AdminPage() {
     } else {
       setAuthError("You are not logged in. Please login as admin.")
     }
-    // eslint-disable-next-line
   }, [])
 
   // Check if current user is admin
@@ -55,12 +52,9 @@ export default function AdminPage() {
     setFeedback("")
     try {
       const res = await api.get("/admin/users")
-      setIsAdmin(true)
       setUsers(res.data)
-    } catch (err: any) {
-      const detail = err.response?.data?.detail || "Access denied: Admins only."
-      setAuthError(detail)
-      setIsAdmin(false)
+    } catch {
+      setAuthError("Access denied: Admins only.")
     } finally {
       setLoading(false)
     }
@@ -73,7 +67,7 @@ export default function AdminPage() {
       const res = await api.get("/admin/users")
       setUsers(res.data)
       setFeedbackType("success")
-    } catch (err: any) {
+    } catch {
       setFeedback("Failed to fetch users")
       setFeedbackType("error")
     } finally {
@@ -107,14 +101,17 @@ export default function AdminPage() {
       setNewPassword("")
       setNewRole("user")
       fetchUsers()
-    } catch (err: any) {
-      let detail = err.response?.data?.detail || "Failed to create user"
-      if (Array.isArray(detail)) {
-        detail = detail.map((d: any) => d.msg || JSON.stringify(d)).join("; ")
-      } else if (typeof detail === "object") {
-        detail = detail.msg || JSON.stringify(detail)
+    } catch (err) {
+      let detail = "Failed to create user"
+      if (err && typeof err === "object" && "response" in err && err.response && typeof err.response === "object" && "data" in err.response && err.response.data && typeof err.response.data === "object" && "detail" in err.response.data) {
+        detail = (err.response.data as { detail: string }).detail || detail
       }
-      setFeedback(detail)
+      if (Array.isArray(detail)) {
+        detail = (detail as { msg?: string }[]).map((d) => d.msg || JSON.stringify(d)).join("; ")
+      } else if (typeof detail === "object") {
+        detail = (detail as { msg?: string }).msg || JSON.stringify(detail)
+      }
+      setFeedback(detail as string)
       setFeedbackType("error")
     } finally {
       setLoading(false)
@@ -152,9 +149,17 @@ export default function AdminPage() {
       setFeedbackType("success")
       setEditUserId(null)
       fetchUsers()
-    } catch (err: any) {
-      const detail = err.response?.data?.detail || "Failed to update user"
-      setFeedback(detail)
+    } catch (err) {
+      let detail = "Failed to update user"
+      if (err && typeof err === "object" && "response" in err && err.response && typeof err.response === "object" && "data" in err.response && err.response.data && typeof err.response.data === "object" && "detail" in err.response.data) {
+        detail = (err.response.data as { detail: string }).detail || detail
+      }
+      if (Array.isArray(detail)) {
+        detail = (detail as { msg?: string }[]).map((d) => d.msg || JSON.stringify(d)).join("; ")
+      } else if (typeof detail === "object") {
+        detail = (detail as { msg?: string }).msg || JSON.stringify(detail)
+      }
+      setFeedback(detail as string)
       setFeedbackType("error")
     } finally {
       setLoading(false)
@@ -170,9 +175,17 @@ export default function AdminPage() {
       setFeedback("User deleted successfully")
       setFeedbackType("success")
       fetchUsers()
-    } catch (err: any) {
-      const detail = err.response?.data?.detail || "Failed to delete user"
-      setFeedback(detail)
+    } catch (err) {
+      let detail = "Failed to delete user"
+      if (err && typeof err === "object" && "response" in err && err.response && typeof err.response === "object" && "data" in err.response && err.response.data && typeof err.response.data === "object" && "detail" in err.response.data) {
+        detail = (err.response.data as { detail: string }).detail || detail
+      }
+      if (Array.isArray(detail)) {
+        detail = (detail as { msg?: string }[]).map((d) => d.msg || JSON.stringify(d)).join("; ")
+      } else if (typeof detail === "object") {
+        detail = (detail as { msg?: string }).msg || JSON.stringify(detail)
+      }
+      setFeedback(detail as string)
       setFeedbackType("error")
     } finally {
       setLoading(false)
@@ -564,7 +577,7 @@ export default function AdminPage() {
       <footer className="border-t border-zinc-800 mt-16">
         <div className="max-w-7xl mx-auto px-6 py-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-sm text-zinc-500">© 2024 Deskboard. All rights reserved.</p>
+            <p className="text-sm text-zinc-500"> 2024 Deskboard. All rights reserved.</p>
             <div className="flex gap-6">
               <button className="text-sm text-zinc-500 hover:text-white transition-colors">Privacy Policy</button>
               <button className="text-sm text-zinc-500 hover:text-white transition-colors">Terms of Service</button>

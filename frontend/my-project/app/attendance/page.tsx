@@ -182,15 +182,18 @@ export default function AttendancePage() {
         const todayRes = await api.get("/attendance/today")
         if (todayRes.data.breaks) setBreaks(todayRes.data.breaks)
       }
-    } catch (err: any) {
+    } catch (err) {
       // Improved error handling for array/object error responses
-      let detail = err.response?.data?.detail || "Action failed"
-      if (Array.isArray(detail)) {
-        detail = detail.map((d: any) => d.msg || JSON.stringify(d)).join("; ")
-      } else if (typeof detail === "object") {
-        detail = detail.msg || JSON.stringify(detail)
+      let detail = "Action failed"
+      if (err && typeof err === "object" && "response" in err && err.response && typeof err.response === "object" && "data" in err.response && err.response.data && typeof err.response.data === "object" && "detail" in err.response.data) {
+        detail = (err.response.data as { detail: string }).detail || detail
       }
-      setFeedback(detail)
+      if (Array.isArray(detail)) {
+        detail = (detail as { msg?: string }[]).map((d) => d.msg || JSON.stringify(d)).join("; ")
+      } else if (typeof detail === "object") {
+        detail = (detail as { msg?: string }).msg || JSON.stringify(detail)
+      }
+      setFeedback(detail as string)
     } finally {
       setLoading(false)
     }
@@ -206,8 +209,12 @@ export default function AttendancePage() {
       setShowWorkSummary(false)
       setStartTime(res.data.start_time ? res.data.start_time : null)
       setEndTime(res.data.end_time ? res.data.end_time : null)
-    } catch (err: any) {
-      setFeedback(err.response?.data?.detail || "Failed to save summary")
+    } catch (err) {
+      let detail = "Failed to save summary"
+      if (err && typeof err === "object" && "response" in err && err.response && typeof err.response === "object" && "data" in err.response && err.response.data && typeof err.response.data === "object" && "detail" in err.response.data) {
+        detail = (err.response.data as { detail: string }).detail || detail
+      }
+      setFeedback(detail as string)
     } finally {
       setLoading(false)
     }
@@ -229,26 +236,6 @@ export default function AttendancePage() {
     )
   }
 
-  const getStatusColor = () => {
-    if (status.ended) return "bg-neutral-900 text-white"
-    if (status.started) {
-      if (status.onBreak) return "bg-amber-500 text-white"
-      return "bg-emerald-500 text-white"
-    }
-    return "bg-neutral-100 text-neutral-500"
-  }
-
-  const formatTime = (seconds: number) => {
-    const hours = Math.floor(seconds / 3600)
-      .toString()
-      .padStart(2, "0")
-    const minutes = Math.floor((seconds % 3600) / 60)
-      .toString()
-      .padStart(2, "0")
-    const secs = (seconds % 60).toString().padStart(2, "0")
-    return `${hours}:${minutes}:${secs}`
-  }
-
   const getStatusText = () => {
     if (status.ended) return "Day Ended"
     if (status.started) {
@@ -265,6 +252,17 @@ export default function AttendancePage() {
       return <Play className="w-6 h-6" />
     }
     return <Clock className="w-6 h-6" />
+  }
+
+  const formatTime = (seconds: number) => {
+    const hours = Math.floor(seconds / 3600)
+      .toString()
+      .padStart(2, "0")
+    const minutes = Math.floor((seconds % 3600) / 60)
+      .toString()
+      .padStart(2, "0")
+    const secs = (seconds % 60).toString().padStart(2, "0")
+    return `${hours}:${minutes}:${secs}`
   }
 
   return (

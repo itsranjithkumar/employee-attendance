@@ -16,8 +16,12 @@ export default function SignupPage() {
     try {
       await api.post("/signup", { name, email, password });
       router.push("/auth/login");
-    } catch (err: any) {
-      setError(err.response?.data?.detail || "Signup failed");
+    } catch (err) {
+      let detail = "Signup failed";
+      if (err && typeof err === "object" && "response" in err && err.response && typeof err.response === "object" && "data" in err.response && err.response.data && typeof err.response.data === "object" && "detail" in err.response.data) {
+        detail = (err.response.data as { detail: string }).detail || detail;
+      }
+      setError(detail);
     }
   };
 
@@ -27,14 +31,10 @@ export default function SignupPage() {
       <section className="flex flex-col justify-center w-full md:w-1/2 px-10 py-14 bg-white/70 backdrop-blur-lg shadow-2xl z-10 relative">
         <div className="max-w-md w-full mx-auto">
           <div className="flex items-center gap-2 mb-8">
-            <svg width="40" height="40" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="24" cy="24" r="24" fill="#111827"/>
-              <path d="M24 14C27.3137 14 30 16.6863 30 20C30 23.3137 27.3137 26 24 26C20.6863 26 18 23.3137 18 20C18 16.6863 20.6863 14 24 14Z" fill="#fff"/>
-              <rect x="16" y="30" width="16" height="4" rx="2" fill="#fff"/>
-            </svg>
-            <span className="text-2xl font-bold tracking-tight text-gray-900 font-sfpro">magizh technologies</span>
+            <span className="text-3xl font-bold tracking-tight text-gray-700 mb-2 font-serif block text-left w-full">
+              Employee Attendance Management
+            </span>
           </div>
-          <h1 className="text-3xl font-extrabold tracking-tight text-gray-900 mb-2 font-sfpro">Employee Attendance Management</h1>
           <p className="text-gray-600 text-sm mb-8 font-sfpro">Join us and experience the luxury!</p>
           <form onSubmit={handleSubmit} className="flex flex-col gap-5 w-full">
             <input
@@ -72,14 +72,13 @@ export default function SignupPage() {
       </section>
       {/* Right: Image Section */}
       <section className="hidden md:flex flex-1 items-center justify-center relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-white/80 via-white/20 to-transparent z-10" />
         <img
-          src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=800&q=80"
-          alt="Ideas inspiration"
+          src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=800&q=80"
+          alt="Signup background"
           className="w-full h-full object-cover object-center scale-105"
         />
         <div className="absolute bottom-0 left-0 right-0 p-10 z-20">
-          <h2 className="text-white text-3xl font-bold drop-shadow-lg mb-2">Bring your ideas to life.</h2>
+          <h2 className="text-white text-3xl font-bold drop-shadow-lg mb-2">Attendance is the first step to achievement.</h2>
           <p className="text-white/90 text-base drop-shadow-lg">Sign up for free and enjoy access to all features for 30 days. No credit card required.</p>
         </div>
       </section>

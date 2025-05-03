@@ -49,7 +49,7 @@ export default function LeavePage() {
     try {
       const res = await api.get("/leave/my-requests")
       setLeaveRequests(res.data)
-    } catch (err: any) {
+    } catch {
       setFeedback("Failed to fetch leave requests")
     }
   }
@@ -58,7 +58,7 @@ export default function LeavePage() {
     try {
       const res = await api.get("/leave/balance")
       setLeaveBalance(res.data)
-    } catch (err: any) {
+    } catch {
       setLeaveBalance(null)
     }
   }
@@ -68,7 +68,7 @@ export default function LeavePage() {
     setFeedback("")
     setLoading(true)
     try {
-      const res = await api.post("/leave/apply", {
+      await api.post("/leave/apply", {
         leave_type: leaveType,
         start_date: startDate,
         end_date: endDate,
@@ -80,12 +80,17 @@ export default function LeavePage() {
       setEndDate("")
       setReason("")
       fetchLeaveRequests()
-    } catch (err: any) {
-      let detail = err.response?.data?.detail || "Failed to apply for leave"
-      if (Array.isArray(detail)) {
-        detail = detail.map((d: any) => d.msg || JSON.stringify(d)).join("; ")
-      } else if (typeof detail === "object") {
-        detail = detail.msg || JSON.stringify(detail)
+    } catch (err) {
+      let detail = "Failed to apply for leave";
+      if (err && typeof err === "object" && "response" in err && err.response && typeof err.response === "object" && "data" in err.response && err.response.data && typeof err.response.data === "object" && "detail" in err.response.data) {
+        const errDetail = (err.response.data as { detail?: unknown }).detail;
+        if (Array.isArray(errDetail)) {
+          detail = errDetail.map((d: Record<string, unknown>) => (typeof d === "object" && d && "msg" in d ? (d.msg as string) : JSON.stringify(d))).join("; ");
+        } else if (typeof errDetail === "object" && errDetail !== null) {
+          detail = (errDetail as { msg?: string }).msg || JSON.stringify(errDetail);
+        } else if (typeof errDetail === "string") {
+          detail = errDetail;
+        }
       }
       setFeedback(detail)
     } finally {

@@ -33,7 +33,6 @@ export default function AdminLeavePage() {
     } else {
       setAuthError("You are not logged in or not an admin.")
     }
-    // eslint-disable-next-line
   }, [])
 
   const fetchPendingRequests = async () => {
@@ -42,7 +41,7 @@ export default function AdminLeavePage() {
     try {
       const res = await api.get("/leave/pending")
       setPendingRequests(res.data)
-    } catch (err: any) {
+    } catch {
       setFeedback("Failed to fetch pending requests")
       setFeedbackType("error")
     } finally {
@@ -58,15 +57,21 @@ export default function AdminLeavePage() {
       setFeedback(`Leave ${action}d successfully`)
       setFeedbackType("success")
       fetchPendingRequests()
-    } catch (err: any) {
-      let detail = err.response?.data?.detail || `Failed to ${action} leave`
-      if (Array.isArray(detail)) {
-        detail = detail.map((d: any) => d.msg || JSON.stringify(d)).join("; ")
-      } else if (typeof detail === "object") {
-        detail = detail.msg || JSON.stringify(detail)
+    } catch (err) {
+      let detail: string = `Failed to ${action} leave`;
+      if (err && typeof err === "object" && "response" in err && err.response && typeof err.response === "object" && "data" in err.response && err.response.data && typeof err.response.data === "object" && "detail" in err.response.data) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const errDetail = (err.response.data as { detail?: unknown }).detail;
+        if (Array.isArray(errDetail)) {
+          detail = errDetail.map((d: Record<string, unknown>) => (typeof d === "object" && d && "msg" in d ? (d.msg as string) : JSON.stringify(d))).join("; ");
+        } else if (typeof errDetail === "object" && errDetail !== null) {
+          detail = (errDetail as { msg?: string }).msg || JSON.stringify(errDetail);
+        } else if (typeof errDetail === "string") {
+          detail = errDetail;
+        }
       }
-      setFeedback(detail)
-      setFeedbackType("error")
+      setFeedback(detail);
+      setFeedbackType("error");
     } finally {
       setLoading(false)
     }

@@ -34,11 +34,18 @@ interface UserType {
   role: string
 }
 
+interface LeaveBalanceType {
+  casual_leave_balance?: number;
+  sick_leave_balance?: number;
+  wfh_balance?: number;
+  [key: string]: number | undefined;
+}
+
 export default function DashboardPage() {
   const router = useRouter()
   const [user, setUser] = useState<UserType | null>(null)
   const [attendance, setAttendance] = useState<AttendanceSummary | null>(null)
-  const [leaveBalance, setLeaveBalance] = useState<any>(null)
+  const [leaveBalance, setLeaveBalance] = useState<LeaveBalanceType | null>(null)
   const [loading, setLoading] = useState(true)
   const [authError, setAuthError] = useState("")
   const [currentTime, setCurrentTime] = useState(new Date())
@@ -449,7 +456,7 @@ export default function DashboardPage() {
       <footer className="border-t border-zinc-800 mt-16">
         <div className="max-w-7xl mx-auto px-6 py-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-sm text-zinc-500">© 2024 Deskboard. All rights reserved.</p>
+            <p className="text-sm text-zinc-500"> 2024 Deskboard. All rights reserved.</p>
             <div className="flex gap-6">
               <button
                 onClick={() => router.push("/settings")}

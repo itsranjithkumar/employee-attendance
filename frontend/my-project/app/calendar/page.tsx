@@ -39,7 +39,7 @@ export default function CalendarPage() {
     try {
       const res = await api.get(`/calendar/?month=${month}&year=${year}`)
       setCalendarData(res.data)
-    } catch (err: any) {
+    } catch {
       setFeedback("Failed to fetch calendar data")
     } finally {
       setLoading(false)

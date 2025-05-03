@@ -15,7 +15,7 @@ function Separator({
       data-slot="separator-root"
       decorative={decorative}
       orientation={orientation}
-     
+      className={className}
       {...props}
     />
   )
