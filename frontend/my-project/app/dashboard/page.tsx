@@ -81,10 +81,11 @@ export default function DashboardPage() {
         const calendar = calendarRes.data;
         let present = 0, absent = 0, leaves = 0, total = 0;
         Object.values(calendar).forEach((status) => {
-          if (status === "present") present++;
-          else if (status === "absent") absent++;
-          else if (status === "leave") leaves++;
-          if (["present", "absent", "leave"].includes(status)) total++;
+          const s = status as string;
+          if (s === "present") present++;
+          else if (s === "absent") absent++;
+          else if (s === "leave") leaves++;
+          if (["present", "absent", "leave"].includes(s)) total++;
         });
         setAttendance({ present, absent, leaves, total });
       })
