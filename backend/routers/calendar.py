@@ -60,7 +60,11 @@ def get_calendar_view(
         elif day in leave_days:
             calendar[day_str] = "leave"
         elif day < today:
-            calendar[day_str] = "absent"
+            # Skip weekends from being marked as absent
+            if day.weekday() >= 5:  # 5 = Saturday, 6 = Sunday
+                calendar[day_str] = "weekend"
+            else:
+                calendar[day_str] = "absent"
         else:
             calendar[day_str] = "future"
     return calendar
