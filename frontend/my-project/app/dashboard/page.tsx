@@ -66,11 +66,27 @@ export default function DashboardPage() {
       return
     }
     setAuthToken(token)
-    Promise.all([api.get("/user/me"), api.get("/attendance/summary"), api.get("/leave/balance")])
-      .then(([userRes, attRes, leaveRes]) => {
+    const now = new Date();
+    const month = now.getMonth() + 1; // getMonth is 0-indexed
+    const year = now.getFullYear();
+    Promise.all([
+      api.get("/user/me"),
+      api.get("/leave/balance"),
+      api.get(`/calendar?month=${month}&year=${year}`)
+    ])
+      .then(([userRes, leaveRes, calendarRes]) => {
         setUser(userRes.data)
-        setAttendance(attRes.data)
         setLeaveBalance(leaveRes.data)
+        // Analyze calendar for present/absent/leave counts
+        const calendar = calendarRes.data;
+        let present = 0, absent = 0, leaves = 0, total = 0;
+        Object.values(calendar).forEach((status) => {
+          if (status === "present") present++;
+          else if (status === "absent") absent++;
+          else if (status === "leave") leaves++;
+          if (["present", "absent", "leave"].includes(status)) total++;
+        });
+        setAttendance({ present, absent, leaves, total });
       })
       .catch(() => {
         setAuthError("Failed to load dashboard. Please login again.")
