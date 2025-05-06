@@ -104,7 +104,12 @@ Monitor daily logs
 
 View and edit attendance manually if needed
 
-Announcements / Notices
+
+
+
+
+
+frontend - https://employee-attendance-jet.vercel.app/
 
 
 
@@ -112,13 +117,6 @@ Announcements / Notices
 
 
 
-
-7. 🔔 Notifications (Optional)
-Email or in-app notification for:
-
-Leave status
-
-Reminders to start/end day
 
 
 
