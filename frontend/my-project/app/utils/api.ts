@@ -1,7 +1,7 @@
 // Utility for API requests to backend
 import axios from 'axios';
 
-const API_BASE = process.env.NEXT_PUBLIC_API_BASE || 'http://localhost:8000';
+const API_BASE = process.env.NEXT_PUBLIC_API_BASE || 'https://employee-attendance-8skf.onrender.com/';
 
 export const api = axios.create({
   baseURL: API_BASE,
