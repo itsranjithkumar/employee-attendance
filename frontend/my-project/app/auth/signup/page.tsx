@@ -3,9 +3,7 @@ import { useState } from "react"
 import type React from "react"
 
 import { useRouter } from "next/navigation"
-import { api, setAuthToken } from "../../utils/api"
-import { GoogleOAuthProvider } from '@react-oauth/google';
-import GoogleAuthButton from '../../../components/GoogleAuthButton';
+import { api } from "../../utils/api";
 
 export default function SignupPage() {
   const router = useRouter()
