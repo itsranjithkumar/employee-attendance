@@ -1,11 +1,19 @@
 "use client"
-import { useState } from "react"
-import type React from "react"
+import React, { useState, useEffect } from "react"
 
 import { useRouter } from "next/navigation"
 import { api, setAuthToken } from "../../utils/api"
+import { GoogleOAuthProvider } from '@react-oauth/google';
+import GoogleAuthButton from '../../../components/GoogleAuthButton';
 
 export default function LoginPage() {
+  // Ensure Authorization header is set on every page load if token exists
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      setAuthToken(token);
+    }
+  }, []);
   const router = useRouter()
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
@@ -20,6 +28,9 @@ export default function LoginPage() {
       const res = await api.post("/login", { email, password })
       setAuthToken(res.data.access_token)
       localStorage.setItem("token", res.data.access_token)
+      // Debug logging
+      console.log("JWT token stored:", res.data.access_token);
+      console.log("API Base URL:", api.defaults.baseURL);
       router.push("/dashboard")
     } catch (err) {
       let detail = "Login failed"
@@ -53,6 +64,48 @@ export default function LoginPage() {
           </div>
 
           <form onSubmit={handleSubmit} className="flex flex-col gap-6 w-full">
+            <div className="flex flex-col gap-2 mb-4">
+              <GoogleOAuthProvider clientId="853434167999-0aj5opdatd6i58n6uifanipcchfkunqd.apps.googleusercontent.com">
+                <GoogleAuthButton
+                  onSuccess={async (credential) => {
+                    setError("");
+                    setIsLoading(true);
+                    try {
+                      const res = await api.post("/google-login", { token: credential });
+                      setAuthToken(res.data.access_token);
+                      localStorage.setItem("token", res.data.access_token);
+                      router.push("/dashboard");
+                    } catch (err) {
+                      setError("Google login failed");
+                    } finally {
+                      setIsLoading(false);
+                    }
+                  }}
+                  buttonText="Continue with Google"
+                />
+              </GoogleOAuthProvider>
+            </div>
+            <div className="flex flex-col gap-2 mb-4">
+              <GoogleOAuthProvider clientId="853434167999-0aj5opdatd6i58n6uifanipcchfkunqd.apps.googleusercontent.com">
+                <GoogleAuthButton
+                  onSuccess={async (credential) => {
+                    setError("");
+                    setIsLoading(true);
+                    try {
+                      const res = await api.post("/google-login", { token: credential });
+                      setAuthToken(res.data.access_token);
+                      localStorage.setItem("token", res.data.access_token);
+                      router.push("/dashboard");
+                    } catch (err) {
+                      setError("Google login failed");
+                    } finally {
+                      setIsLoading(false);
+                    }
+                  }}
+                  buttonText="Continue with Google"
+                />
+              </GoogleOAuthProvider>
+            </div>
             <div className="space-y-2">
               <label htmlFor="email" className="text-[#333] text-[15px] font-medium">
                 Email

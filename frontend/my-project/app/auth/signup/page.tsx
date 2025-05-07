@@ -3,7 +3,9 @@ import { useState } from "react"
 import type React from "react"
 
 import { useRouter } from "next/navigation"
-import { api } from "../../utils/api"
+import { api, setAuthToken } from "../../utils/api"
+import { GoogleOAuthProvider } from '@react-oauth/google';
+import GoogleAuthButton from '../../../components/GoogleAuthButton';
 
 export default function SignupPage() {
   const router = useRouter()
@@ -52,6 +54,48 @@ export default function SignupPage() {
           </div>
 
           <form onSubmit={handleSubmit} className="flex flex-col gap-6 w-full">
+        <div className="flex flex-col gap-2 mb-4">
+          <GoogleOAuthProvider clientId="853434167999-0aj5opdatd6i58n6uifanipcchfkunqd.apps.googleusercontent.com">
+            <GoogleAuthButton
+              onSuccess={async (credential) => {
+                setError("");
+                setIsLoading(true);
+                try {
+                  const res = await api.post("/google-login", { token: credential });
+                  setAuthToken(res.data.access_token);
+                  localStorage.setItem("token", res.data.access_token);
+                  router.push("/dashboard");
+                } catch (err) {
+                  setError("Google signup failed");
+                } finally {
+                  setIsLoading(false);
+                }
+              }}
+              buttonText="Sign up with Google"
+            />
+          </GoogleOAuthProvider>
+        </div>
+        <div className="flex flex-col gap-2 mb-4">
+          <GoogleOAuthProvider clientId="853434167999-0aj5opdatd6i58n6uifanipcchfkunqd.apps.googleusercontent.com">
+            <GoogleAuthButton
+              onSuccess={async (credential) => {
+                setError("");
+                setIsLoading(true);
+                try {
+                  const res = await api.post("/google-login", { token: credential });
+                  setAuthToken(res.data.access_token);
+                  localStorage.setItem("token", res.data.access_token);
+                  router.push("/dashboard");
+                } catch (err) {
+                  setError("Google signup failed");
+                } finally {
+                  setIsLoading(false);
+                }
+              }}
+              buttonText="Sign up with Google"
+            />
+          </GoogleOAuthProvider>
+        </div>
             <div className="space-y-2">
               <label htmlFor="name" className="text-[#333] text-[15px] font-medium">
                 Full Name
