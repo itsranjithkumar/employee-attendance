@@ -75,12 +75,10 @@ ptyprocess==0.7.0
 pyasn1==0.6.1
 pycairo==1.20.1
 pycparser==2.21
-pycups==2.0.1
 pydantic==2.11.3
 pydantic-settings==2.5.2
 pydantic_core==2.33.1
 pydyf==0.11.0
-PyGObject==3.42.1
 PyJWT==2.3.0
 pymacaroons==0.13.0
 pymongo==4.10.1
