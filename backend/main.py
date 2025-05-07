@@ -14,7 +14,9 @@ app = FastAPI()
 # Enable CORS for frontend requests
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # For dev, allow all. Use ["http://localhost:3000"] for more security.
+    allow_origins=[
+        "https://employee-attendance-jet.vercel.app"
+    ],  # Only allow requests from deployed frontend
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
