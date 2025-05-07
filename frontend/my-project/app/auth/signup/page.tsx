@@ -22,22 +22,8 @@ export default function SignupPage() {
     try {
       await api.post("/signup", { name, email, password })
       router.push("/auth/login")
-    } catch (err) {
-      let detail = "Signup failed"
-      if (
-        err &&
-        typeof err === "object" &&
-        "response" in err &&
-        err.response &&
-        typeof err.response === "object" &&
-        "data" in err.response &&
-        err.response.data &&
-        typeof err.response.data === "object" &&
-        "detail" in err.response.data
-      ) {
-        detail = (err.response.data as { detail: string }).detail || detail
-      }
-      setError(detail)
+    } catch {
+      setError("Signup failed");
     } finally {
       setIsLoading(false)
     }
@@ -65,7 +51,7 @@ export default function SignupPage() {
                   setAuthToken(res.data.access_token);
                   localStorage.setItem("token", res.data.access_token);
                   router.push("/dashboard");
-                } catch (err) {
+                } catch {
                   setError("Google signup failed");
                 } finally {
                   setIsLoading(false);
@@ -86,7 +72,7 @@ export default function SignupPage() {
                   setAuthToken(res.data.access_token);
                   localStorage.setItem("token", res.data.access_token);
                   router.push("/dashboard");
-                } catch (err) {
+                } catch {
                   setError("Google signup failed");
                 } finally {
                   setIsLoading(false);

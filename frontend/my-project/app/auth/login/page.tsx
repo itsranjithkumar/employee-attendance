@@ -32,22 +32,8 @@ export default function LoginPage() {
       console.log("JWT token stored:", res.data.access_token);
       console.log("API Base URL:", api.defaults.baseURL);
       router.push("/dashboard")
-    } catch (err) {
-      let detail = "Login failed"
-      if (
-        err &&
-        typeof err === "object" &&
-        "response" in err &&
-        err.response &&
-        typeof err.response === "object" &&
-        "data" in err.response &&
-        err.response.data &&
-        typeof err.response.data === "object" &&
-        "detail" in err.response.data
-      ) {
-        detail = (err.response.data as { detail: string }).detail || detail
-      }
-      setError(detail)
+    } catch {
+      setError("Login failed");
     } finally {
       setIsLoading(false)
     }
@@ -75,7 +61,7 @@ export default function LoginPage() {
                       setAuthToken(res.data.access_token);
                       localStorage.setItem("token", res.data.access_token);
                       router.push("/dashboard");
-                    } catch (err) {
+                    } catch {
                       setError("Google login failed");
                     } finally {
                       setIsLoading(false);
@@ -96,7 +82,7 @@ export default function LoginPage() {
                       setAuthToken(res.data.access_token);
                       localStorage.setItem("token", res.data.access_token);
                       router.push("/dashboard");
-                    } catch (err) {
+                    } catch {
                       setError("Google login failed");
                     } finally {
                       setIsLoading(false);

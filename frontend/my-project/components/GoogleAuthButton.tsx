@@ -11,7 +11,11 @@ const GoogleAuthButton: React.FC<GoogleAuthButtonProps> = ({ onSuccess, onError,
   // Only allow allowed values for the text prop
   // Default to 'continue_with', or use buttonText if it matches one of the allowed values
   const allowedTextValues = ['signin_with', 'signup_with', 'continue_with', 'signin'] as const;
-  const textProp = allowedTextValues.includes((buttonText as any)) ? (buttonText as typeof allowedTextValues[number]) : 'continue_with';
+  type AllowedText = typeof allowedTextValues[number];
+  function isAllowedText(value: unknown): value is AllowedText {
+    return typeof value === 'string' && (allowedTextValues as readonly string[]).includes(value);
+  }
+  const textProp: AllowedText = isAllowedText(buttonText) ? buttonText : 'continue_with';
 
   return (
     <GoogleLogin
