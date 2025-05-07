@@ -97,7 +97,6 @@ python-multipart==0.0.6
 pytz==2022.1
 pyxdg==0.27
 PyYAML==6.0.1
-quickcal==2.4
 reportlab==3.6.8
 requests==2.31.0
 rsa==4.9
