@@ -89,7 +89,7 @@ pyparsing==2.4.7
 pyphen==0.17.2
 pyRFC3339==1.1
 python-dateutil==2.8.1
-python-debian==0.1.43+ubuntu1.1
+python-debian==0.1.43
 python-decouple==3.8
 python-dotenv==1.0.0
 python-jose==3.3.0
