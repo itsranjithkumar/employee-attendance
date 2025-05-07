@@ -4,7 +4,7 @@ alembic==1.13.3
 annotated-types==0.7.0
 anyio==3.7.1
 asgiref==3.5.0
-asyncpg==0.24.0
+asyncpg==0.27.0
 Authlib==1.2.1
 bcrypt==4.3.0
 beanie==1.29.0
