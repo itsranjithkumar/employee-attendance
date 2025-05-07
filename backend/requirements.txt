@@ -119,7 +119,6 @@ webencodings==0.5.1
 Werkzeug==2.3.6
 wsproto==1.0.0
 xdg==5
-xkit==0.0.0
 yt-dlp==2024.11.4
 zipp==3.16.2
 zopfli==0.2.3.post1
