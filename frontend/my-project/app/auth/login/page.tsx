@@ -71,27 +71,7 @@ export default function LoginPage() {
                 />
               </GoogleOAuthProvider>
             </div>
-            <div className="flex flex-col gap-2 mb-4">
-              <GoogleOAuthProvider clientId="853434167999-0aj5opdatd6i58n6uifanipcchfkunqd.apps.googleusercontent.com">
-                <GoogleAuthButton
-                  onSuccess={async (credential) => {
-                    setError("");
-                    setIsLoading(true);
-                    try {
-                      const res = await api.post("/google-login", { token: credential });
-                      setAuthToken(res.data.access_token);
-                      localStorage.setItem("token", res.data.access_token);
-                      router.push("/dashboard");
-                    } catch {
-                      setError("Google login failed");
-                    } finally {
-                      setIsLoading(false);
-                    }
-                  }}
-                  buttonText="Continue with Google"
-                />
-              </GoogleOAuthProvider>
-            </div>
+
             <div className="space-y-2">
               <label htmlFor="email" className="text-[#333] text-[15px] font-medium">
                 Email
