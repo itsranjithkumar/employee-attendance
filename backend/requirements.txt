@@ -106,7 +106,6 @@ sniffio==1.3.1
 SQLAlchemy==1.4.27
 ssh-import-id==5.11
 starlette==0.27.0
-systemd-python==234
 tinycss2==1.4.0
 toml==0.10.2
 tqdm==4.67.0
