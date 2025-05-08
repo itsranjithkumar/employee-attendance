@@ -221,7 +221,7 @@ export default function AdminPage() {
   }
 
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen bg-black text-white overflow-x-hidden">
       {/* Header */}
       <header className="border-b border-zinc-800 backdrop-blur-lg bg-black/80 sticky top-0 z-10">
         <div className="max-w-7xl mx-auto">
@@ -261,7 +261,7 @@ export default function AdminPage() {
         </div>
       </header>
 
-      <main className="max-w-7xl mx-auto px-6 py-10">
+      <main className="w-full max-w-7xl px-6 py-10">
         {/* Page Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 text-center md:text-left items-center md:items-end">
           <div>
@@ -280,7 +280,7 @@ export default function AdminPage() {
         </div>
 
         {/* Main Content */}
-        <div className="bg-zinc-900 rounded-3xl border border-zinc-800 overflow-hidden shadow-2xl mb-10 mx-auto md:mx-0">
+        <div className="bg-zinc-900 rounded-3xl border border-zinc-800 overflow-hidden shadow-2xl mb-10 w-full md:mx-0">
           {/* Card Header */}
           <div className="p-6 border-b border-zinc-800 flex flex-col md:flex-row md:items-center justify-between gap-4">
             <div className="flex items-center">
