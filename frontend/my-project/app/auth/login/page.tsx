@@ -40,17 +40,17 @@ export default function LoginPage() {
   }
 
   return (
-    <main className="min-h-screen w-full flex items-stretch">
+    <main className="min-h-screen w-full flex flex-col md:flex-row items-stretch bg-white">
       {/* Left: Form Section */}
-      <section className="flex flex-col justify-center w-full md:w-1/2 px-6 sm:px-10 py-14 bg-white z-10 relative">
-        <div className="max-w-[400px] w-full mx-auto">
-          <div className="mb-12">
-            <h1 className="text-[38px] font-semibold text-black tracking-tight mb-2">Welcome back</h1>
-            <p className="text-[#666] text-[18px] font-normal">Sign in to your account to continue</p>
+      <section className="flex flex-col justify-center items-center w-full md:w-1/2 px-4 sm:px-10 py-8 sm:py-14 bg-white z-10 relative min-h-[60vh] md:min-h-screen">
+        <div className="max-w-[400px] w-full flex flex-col items-center">
+          <div className="mb-8 sm:mb-12 md:mb-16 w-full text-center md:text-left">
+            <h1 className="text-2xl sm:text-[38px] md:text-4xl font-semibold text-black tracking-tight mb-2">Welcome back</h1>
+            <p className="text-[#666] text-base sm:text-[18px] md:text-lg font-normal">Sign in to your account to continue</p>
           </div>
 
-          <form onSubmit={handleSubmit} className="flex flex-col gap-6 w-full">
-            <div className="flex flex-col gap-2 mb-4">
+          <form onSubmit={handleSubmit} className="flex flex-col gap-4 sm:gap-6 md:gap-8 w-full">
+            <div className="flex flex-col gap-2 mb-2">
               <GoogleOAuthProvider clientId="853434167999-0aj5opdatd6i58n6uifanipcchfkunqd.apps.googleusercontent.com">
                 <GoogleAuthButton
                   onSuccess={async (credential) => {
@@ -72,8 +72,8 @@ export default function LoginPage() {
               </GoogleOAuthProvider>
             </div>
 
-            <div className="space-y-2">
-              <label htmlFor="email" className="text-[#333] text-[15px] font-medium">
+            <div className="space-y-1">
+              <label htmlFor="email" className="text-[#333] text-[15px] sm:text-sm font-medium">
                 Email
               </label>
               <input
@@ -82,17 +82,17 @@ export default function LoginPage() {
                 placeholder="name@example.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full h-[52px] px-4 rounded-lg border border-[#e0e0e0] focus:border-[#000] focus:outline-none text-[16px] bg-white transition-colors duration-200"
+                className="w-full h-[52px] px-4 rounded-lg border border-[#e0e0e0] focus:border-[#000] focus:outline-none text-[16px] bg-white transition-colors duration-200 placeholder-gray-500 text-black"
                 required
               />
             </div>
 
-            <div className="space-y-2">
+            <div className="space-y-1">
               <div className="flex justify-between items-center">
-                <label htmlFor="password" className="text-[#333] text-[15px] font-medium">
+                <label htmlFor="password" className="text-[#333] text-[15px] sm:text-sm font-medium">
                   Password
                 </label>
-                <a href="#" className="text-[#000] text-[14px] font-medium hover:underline">
+                <a href="#" className="text-[#000] text-[14px] sm:text-sm font-medium hover:underline">
                   Forgot password?
                 </a>
               </div>
@@ -102,33 +102,33 @@ export default function LoginPage() {
                 placeholder="••••••••"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full h-[52px] px-4 rounded-lg border border-[#e0e0e0] focus:border-[#000] focus:outline-none text-[16px] bg-white transition-colors duration-200"
+                className="w-full h-[52px] px-4 rounded-lg border border-[#e0e0e0] focus:border-[#000] focus:outline-none text-[16px] bg-white transition-colors duration-200 placeholder-gray-500 text-black"
                 required
               />
             </div>
 
             {error && (
-              <div className="text-[#d93025] text-[14px] font-medium bg-[#fce8e6] rounded-lg py-3 px-4">{error}</div>
+              <div className="text-[#d93025] text-[13px] sm:text-sm font-medium bg-[#fce8e6] rounded-lg py-2 px-3">{error}</div>
             )}
 
             <button
               type="submit"
               disabled={isLoading}
-              className="w-full h-[52px] mt-2 bg-[#000] text-white font-medium rounded-lg hover:bg-[#333] active:bg-[#000] transition-colors duration-200 text-[16px] disabled:opacity-70"
+              className="w-full h-[48px] mt-2 bg-[#000] text-white font-medium rounded-lg hover:bg-[#333] active:bg-[#000] transition-colors duration-200 text-base sm:text-lg disabled:opacity-70"
             >
               {isLoading ? "Signing in..." : "Sign in"}
             </button>
           </form>
 
-          <div className="mt-10 text-center text-[#666] text-[16px]">
+          <div className="mt-8 text-center text-[#666] text-base sm:text-lg">
             Don&apos;t have an account?{" "}
             <a href="/auth/signup" className="text-[#000] font-medium hover:underline">
               Create account
             </a>
           </div>
 
-          <div className="mt-16 pt-6 border-t border-[#eaeaea]">
-            <p className="text-[#666] text-[13px] leading-5">
+          <div className="mt-12 pt-4 border-t border-[#eaeaea]">
+            <p className="text-[#666] text-[13px] sm:text-sm leading-5">
               By continuing, you agree to our{" "}
               <a href="#" className="text-[#000] hover:underline">
                 Terms of Service

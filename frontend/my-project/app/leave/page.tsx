@@ -129,12 +129,12 @@ export default function LeavePage() {
   }
 
   return (
-    <div className="w-full min-h-screen p-8 md:p-12 bg-gradient-to-b from-gray-50 to-gray-100">
-      <h1 className="text-4xl font-bold mb-10 text-gray-900 tracking-tight">Leave Management</h1>
+    <div className="w-full min-h-screen p-4 sm:p-8 md:p-12 bg-gradient-to-b from-gray-50 to-gray-100 flex flex-col items-center md:block">
+      <h1 className="text-3xl sm:text-4xl font-bold mb-8 sm:mb-10 text-gray-900 tracking-tight text-center md:text-left">Leave Management</h1>
 
       {/* Leave Balances */}
       {leaveBalance && (
-        <div className="mb-12 grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="mb-10 sm:mb-12 grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 w-full max-w-5xl mx-auto">
           <div className="bg-white p-8 rounded-3xl shadow-sm transition-all duration-300 hover:shadow-lg transform hover:-translate-y-1 border border-gray-100">
             <div className="flex items-center mb-4">
               <div className="w-12 h-12 rounded-full bg-rose-50 flex items-center justify-center mr-4">
@@ -168,10 +168,10 @@ export default function LeavePage() {
         </div>
       )}
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-10 w-full max-w-5xl mx-auto">
         {/* Apply for Leave Form */}
-        <div className="w-full bg-white p-8 rounded-3xl shadow-sm border border-gray-100">
-          <h2 className="text-2xl font-medium mb-8 text-gray-900">Apply for Leave</h2>
+        <div className="w-full bg-white p-4 sm:p-8 rounded-3xl shadow-sm border border-gray-100 mx-auto md:mx-0">
+          <h2 className="text-2xl font-medium mb-8 text-gray-900 text-center md:text-left">Apply for Leave</h2>
           <form className="space-y-6" onSubmit={handleApplyLeave}>
             <div>
               <label className="block mb-2 text-sm font-medium text-gray-700">Leave Type</label>
@@ -293,8 +293,8 @@ export default function LeavePage() {
         </div>
 
         {/* Leave Requests */}
-        <div className="w-full bg-white p-8 rounded-3xl shadow-sm border border-gray-100">
-          <h2 className="text-2xl font-medium mb-8 text-gray-900">My Leave Requests</h2>
+        <div className="w-full bg-white p-4 sm:p-8 rounded-3xl shadow-sm border border-gray-100 mx-auto md:mx-0">
+          <h2 className="text-2xl font-medium mb-8 text-gray-900 text-center md:text-left">My Leave Requests</h2>
           <div className="overflow-hidden rounded-2xl border border-gray-200">
             {leaveRequests.length === 0 ? (
               <div className="text-center p-12 text-gray-500 bg-gray-50">

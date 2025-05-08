@@ -28,19 +28,19 @@ export default function SignupPage() {
   }
 
   return (
-    <main className="min-h-screen w-full flex items-stretch">
+    <main className="min-h-screen w-full flex flex-col md:flex-row items-stretch bg-white">
       {/* Left: Form Section */}
-      <section className="flex flex-col justify-center w-full md:w-1/2 px-6 sm:px-10 py-14 bg-white z-10 relative">
+      <section className="flex flex-col justify-center w-full md:w-1/2 px-4 sm:px-10 py-8 sm:py-14 bg-white z-10 relative min-h-[60vh]">
         <div className="max-w-[400px] w-full mx-auto">
-          <div className="mb-12">
-            <h1 className="text-[38px] font-semibold text-black tracking-tight mb-2">Create account</h1>
-            <p className="text-[#666] text-[18px] font-normal">Join Employee Attendance Management</p>
+          <div className="mb-8 sm:mb-12">
+            <h1 className="text-2xl sm:text-[38px] font-semibold text-black tracking-tight mb-2">Create account</h1>
+            <p className="text-[#666] text-base sm:text-[18px] font-normal">Join Employee Attendance Management</p>
           </div>
 
           <form onSubmit={handleSubmit} className="flex flex-col gap-6 w-full">
         
         
-            <div className="space-y-2">
+            <div className="space-y-1">
               <label htmlFor="name" className="text-[#333] text-[15px] font-medium">
                 Full Name
               </label>
@@ -50,12 +50,12 @@ export default function SignupPage() {
                 placeholder="John Appleseed"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                className="w-full h-[52px] px-4 rounded-lg border border-[#e0e0e0] focus:border-[#000] focus:outline-none text-[16px] bg-white transition-colors duration-200"
+                className="w-full h-[52px] px-4 rounded-lg border border-[#e0e0e0] focus:border-[#000] focus:outline-none text-[16px] bg-white transition-colors duration-200 placeholder-gray-500 text-black"
                 required
               />
             </div>
 
-            <div className="space-y-2">
+            <div className="space-y-1">
               <label htmlFor="email" className="text-[#333] text-[15px] font-medium">
                 Email
               </label>
@@ -65,12 +65,12 @@ export default function SignupPage() {
                 placeholder="name@example.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full h-[52px] px-4 rounded-lg border border-[#e0e0e0] focus:border-[#000] focus:outline-none text-[16px] bg-white transition-colors duration-200"
+                className="w-full h-[52px] px-4 rounded-lg border border-[#e0e0e0] focus:border-[#000] focus:outline-none text-[16px] bg-white transition-colors duration-200 placeholder-gray-500 text-black"
                 required
               />
             </div>
 
-            <div className="space-y-2">
+            <div className="space-y-1">
               <label htmlFor="password" className="text-[#333] text-[15px] font-medium">
                 Password
               </label>
@@ -80,33 +80,33 @@ export default function SignupPage() {
                 placeholder="••••••••"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full h-[52px] px-4 rounded-lg border border-[#e0e0e0] focus:border-[#000] focus:outline-none text-[16px] bg-white transition-colors duration-200"
+                className="w-full h-[52px] px-4 rounded-lg border border-[#e0e0e0] focus:border-[#000] focus:outline-none text-[16px] bg-white transition-colors duration-200 placeholder-gray-500 text-black"
                 required
               />
               <p className="text-[#666] text-[13px]">Password must be at least 8 characters long.</p>
             </div>
 
             {error && (
-              <div className="text-[#d93025] text-[14px] font-medium bg-[#fce8e6] rounded-lg py-3 px-4">{error}</div>
+              <div className="text-[#d93025] text-[13px] font-medium bg-[#fce8e6] rounded-lg py-2 px-3">{error}</div>
             )}
 
             <button
               type="submit"
               disabled={isLoading}
-              className="w-full h-[52px] mt-2 bg-[#000] text-white font-medium rounded-lg hover:bg-[#333] active:bg-[#000] transition-colors duration-200 text-[16px] disabled:opacity-70"
+              className="w-full h-[48px] mt-2 bg-[#000] text-white font-medium rounded-lg hover:bg-[#333] active:bg-[#000] transition-colors duration-200 text-base sm:text-[16px] disabled:opacity-70"
             >
               {isLoading ? "Creating account..." : "Create Account"}
             </button>
           </form>
 
-          <div className="mt-10 text-center text-[#666] text-[16px]">
+          <div className="mt-8 text-center text-[#666] text-base sm:text-[16px]">
             Already have an account?{" "}
             <a href="/auth/login" className="text-[#000] font-medium hover:underline">
               Sign in
             </a>
           </div>
 
-          <div className="mt-16 pt-6 border-t border-[#eaeaea]">
+          <div className="mt-12 pt-4 border-t border-[#eaeaea]">
             <p className="text-[#666] text-[13px] leading-5">
               By creating an account, you agree to our{" "}
               <a href="#" className="text-[#000] hover:underline">

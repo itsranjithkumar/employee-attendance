@@ -3,7 +3,7 @@ import Link from "next/link"
 export default function Home() {
   return (
     <main
-      className="min-h-screen w-full flex flex-col items-center justify-center bg-black text-white"
+      className="min-h-screen w-full flex flex-col items-center justify-center bg-black text-white relative"
       style={{
         background: "linear-gradient(to bottom, #000000, #121212)",
         fontFamily: "'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif",
@@ -18,26 +18,28 @@ export default function Home() {
         }}
       />
 
-      <div className="relative z-10 w-full max-w-6xl mx-auto px-6 py-20 flex flex-col items-center">
+      <div className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-20 flex flex-col items-center">
         {/* Logo */}
         <div
-          className="mb-16 text-center"
+          className="mb-10 sm:mb-16 text-center"
           style={{
             background: "linear-gradient(135deg, #e2e2e2 0%, #a0a0a0 100%)",
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
-            fontSize: "4.2rem",
+            fontSize: "2.5rem",
             fontWeight: 700,
             letterSpacing: "-0.03em",
           }}
         >
-          Magizh Technologies
+          <span className="text-3xl sm:text-5xl md:text-6xl" style={{WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent'}}>
+            Magizh Technologies
+          </span>
         </div>
 
         {/* Main content */}
-        <div className="w-full max-w-4xl text-center mb-16">
+        <div className="w-full max-w-4xl text-center mb-10 sm:mb-16">
           <h1
-            className="text-5xl md:text-6xl lg:text-7xl font-bold mb-8"
+            className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 sm:mb-8"
             style={{
               background: "linear-gradient(to bottom, #ffffff 0%, #a0a0a0 100%)",
               WebkitBackgroundClip: "text",
@@ -50,7 +52,7 @@ export default function Home() {
           </h1>
 
           <p
-            className="text-xl md:text-2xl mb-12 mx-auto max-w-3xl"
+            className="text-base sm:text-xl md:text-2xl mb-8 sm:mb-12 mx-auto max-w-3xl"
             style={{
               color: "#a0a0a0",
               fontWeight: 300,
@@ -63,15 +65,15 @@ export default function Home() {
           </p>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mt-12">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 mt-8 sm:mt-12 w-full">
             <Link href="/auth/login">
               <button
-                className="px-10 py-4 rounded-full text-lg font-medium transition-all duration-300"
+                className="w-full sm:w-auto px-8 py-3 sm:px-10 sm:py-4 rounded-full text-base sm:text-lg font-medium transition-all duration-300"
                 style={{
                   background: "linear-gradient(135deg, #e2e2e2 0%, #a0a0a0 100%)",
                   color: "#000000",
                   boxShadow: "0 10px 30px rgba(160, 160, 160, 0.2)",
-                  minWidth: "180px",
+                  minWidth: "140px",
                 }}
               >
                 Sign In
@@ -80,12 +82,12 @@ export default function Home() {
 
             <Link href="/auth/signup">
               <button
-                className="px-10 py-4 rounded-full text-lg font-medium transition-all duration-300"
+                className="w-full sm:w-auto px-8 py-3 sm:px-10 sm:py-4 rounded-full text-base sm:text-lg font-medium transition-all duration-300"
                 style={{
                   background: "transparent",
                   color: "#a0a0a0",
                   border: "1px solid #333333",
-                  minWidth: "180px",
+                  minWidth: "140px",
                 }}
               >
                 Sign Up
@@ -95,12 +97,12 @@ export default function Home() {
         </div>
 
         {/* Premium features */}
-        <div className="w-full mt-20">
+        <div className="w-full mt-12 sm:mt-20">
           <div
-            className="text-center mb-16"
+            className="text-center mb-8 sm:mb-16"
             style={{
               color: "#a0a0a0",
-              fontSize: "1.25rem",
+              fontSize: "1.1rem",
               fontWeight: 300,
               letterSpacing: "0.2em",
               textTransform: "uppercase",
@@ -109,7 +111,7 @@ export default function Home() {
             Premium Features
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-10 md:gap-12">
             <div className="text-center">
               <h3
                 className="text-xl mb-4"
@@ -166,15 +168,15 @@ export default function Home() {
 
       {/* Footer */}
       <footer
-        className="w-full py-8 mt-20"
+        className="w-full py-6 sm:py-8 mt-10 sm:mt-20"
         style={{
           borderTop: "1px solid #222222",
         }}
       >
-        <div className="container mx-auto px-6">
-          <div className="flex flex-col md:flex-row justify-between items-center">
+        <div className="container mx-auto px-4 sm:px-6">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <div
-              className="mb-4 md:mb-0"
+              className="mb-2 md:mb-0 text-center md:text-left"
               style={{
                 color: "#505050",
                 fontSize: "0.8rem",
@@ -182,7 +184,7 @@ export default function Home() {
             >
               2025 Enterprise Attendance. All rights reserved.
             </div>
-            <div className="flex gap-8">
+            <div className="flex gap-4 sm:gap-8 flex-wrap justify-center">
               <Link href="/privacy" style={{ color: "#505050", fontSize: "0.8rem" }}>
                 Privacy
               </Link>

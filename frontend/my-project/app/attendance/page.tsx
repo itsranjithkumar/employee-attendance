@@ -279,8 +279,8 @@ export default function AttendancePage() {
         </div>
 
         {/* Content */}
-        <div className="relative z-10 h-full flex flex-col justify-between p-8 md:p-12 w-full">
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-center w-full">
+        <div className="relative z-10 h-full flex flex-col justify-between p-4 sm:p-8 md:p-12 w-full">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-center w-full gap-4 md:gap-0">
             <div>
               <h1 className="text-3xl md:text-4xl font-bold text-white tracking-tight">Attendance Tracker</h1>
               <p className="text-zinc-400 mt-2 font-light">
@@ -293,7 +293,7 @@ export default function AttendancePage() {
               </p>
             </div>
 
-            <div className="mt-6 md:mt-0 flex items-center gap-4 bg-white/10 backdrop-blur-md rounded-2xl px-6 py-4 border border-white/20">
+            <div className="mt-4 sm:mt-6 md:mt-0 flex items-center gap-4 bg-white/10 backdrop-blur-md rounded-2xl px-4 sm:px-6 py-4 border border-white/20 w-full md:w-auto">
               <div
                 className={`w-12 h-12 rounded-xl flex items-center justify-center ${
                   status.ended
@@ -314,7 +314,7 @@ export default function AttendancePage() {
             </div>
           </div>
 
-          <div className="flex justify-center md:justify-end">
+          <div className="flex justify-center md:justify-end mt-4 md:mt-0">
             <div className="bg-black/40 backdrop-blur-lg rounded-2xl px-8 py-4 border border-white/10 text-center">
               <p className="text-zinc-400 text-sm font-medium">{status.ended ? "Total Time" : "Time Elapsed"}</p>
               <p className="text-white text-3xl font-mono font-light tracking-wider mt-1">{formatTime(elapsed)}</p>
@@ -324,10 +324,10 @@ export default function AttendancePage() {
       </div>
 
       {/* Main Content */}
-      <div className="flex-1 w-full p-8 md:p-12">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 w-full">
+      <div className="flex-1 w-full p-4 sm:p-8 md:p-12">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8 w-full">
           {/* Left Column - Summary Cards */}
-          <div className="lg:col-span-2 space-y-8">
+          <div className="lg:col-span-2 space-y-6 sm:space-y-8">
             {/* Today Summary Card */}
             <div className="bg-white rounded-2xl p-8 shadow-[0_20px_50px_-12px_rgba(0,0,0,0.05)] border border-zinc-100 w-full">
               <h3 className="text-xl font-semibold mb-6 text-zinc-900 flex items-center gap-2">
@@ -335,7 +335,7 @@ export default function AttendancePage() {
                 Today Summary
               </h3>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                 <div className="space-y-4">
                   <div className="flex flex-col">
                     <span className="text-zinc-500 text-sm font-medium">Start Time</span>
@@ -350,11 +350,11 @@ export default function AttendancePage() {
                   </div>
                 </div>
 
-                <div className="flex flex-col justify-center items-center md:items-start">
+                <div className="flex flex-col justify-center items-center md:items-start mt-4 md:mt-0">
                   <span className="text-zinc-500 text-sm font-medium">Total Work Duration</span>
                   <span className="text-emerald-600 text-2xl font-semibold mt-2">{formatWorkedHours(elapsed)}</span>
 
-                  <div className="mt-4 w-full max-w-xs bg-zinc-100 h-2 rounded-full overflow-hidden">
+                  <div className="mt-4 w-full max-w-xs bg-zinc-100 h-2 rounded-full overflow-hidden mx-auto md:mx-0">
                     <div
                       className="h-full bg-emerald-500 rounded-full"
                       style={{ width: `${Math.min(100, (elapsed / (8 * 3600)) * 100)}%` }}
@@ -384,7 +384,7 @@ export default function AttendancePage() {
                   {breaks.map((b, idx) => (
                     <div
                       key={b.break_in + idx}
-                      className="flex flex-col md:flex-row md:items-center justify-between p-4 rounded-xl bg-zinc-50 border border-zinc-100"
+                      className="flex flex-col md:flex-row md:items-center justify-between p-3 sm:p-4 rounded-xl bg-zinc-50 border border-zinc-100 gap-2 md:gap-0"
                     >
                       <div>
                         <span className="text-zinc-900 font-medium">Break {idx + 1}</span>
@@ -412,13 +412,13 @@ export default function AttendancePage() {
                         </div>
                       </div>
 
-                      <div className="mt-2 md:mt-0 px-3 py-1 rounded-full bg-zinc-200 text-zinc-700 text-sm font-medium">
+                      <div className="mt-2 md:mt-0 px-3 py-1 rounded-full bg-zinc-200 text-zinc-700 text-sm font-medium text-center">
                         {formatBreakDuration(getBreakDuration(b))}
                       </div>
                     </div>
                   ))}
 
-                  <div className="flex justify-between items-center pt-4 border-t border-zinc-100">
+                  <div className="flex flex-col sm:flex-row justify-between items-center pt-4 border-t border-zinc-100 gap-2 sm:gap-0">
                     <span className="text-zinc-600 font-medium">Total Break Time</span>
                     <span className="text-zinc-900 font-semibold">{formatBreakDuration(getTotalBreakSeconds())}</span>
                   </div>
@@ -428,7 +428,7 @@ export default function AttendancePage() {
           </div>
 
           {/* Right Column - Actions */}
-          <div className="space-y-8">
+          <div className="space-y-6 sm:space-y-8">
             {/* Action Buttons Card */}
             <div className="bg-white rounded-2xl p-8 shadow-[0_20px_50px_-12px_rgba(0,0,0,0.05)] border border-zinc-100 w-full">
               <h3 className="text-xl font-semibold mb-6 text-zinc-900">Actions</h3>
@@ -558,7 +558,7 @@ export default function AttendancePage() {
       </div>
 
       {/* Footer */}
-      <div className="bg-zinc-50 py-6 px-8 border-t border-zinc-100 text-center text-zinc-400 text-sm w-full">
+      <div className="bg-zinc-50 py-4 sm:py-6 px-4 sm:px-8 border-t border-zinc-100 text-center text-zinc-400 text-sm w-full">
         <p>Attendance Tracker • {new Date().getFullYear()}</p>
       </div>
     </div>

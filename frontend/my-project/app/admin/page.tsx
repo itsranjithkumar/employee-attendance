@@ -263,10 +263,10 @@ export default function AdminPage() {
 
       <main className="max-w-7xl mx-auto px-6 py-10">
         {/* Page Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 text-center md:text-left items-center md:items-end">
           <div>
-            <h1 className="text-4xl font-bold text-white mb-3">User Management</h1>
-            <p className="text-zinc-400 text-lg">Manage system users and permissions</p>
+            <h1 className="text-4xl font-bold text-white mb-3 text-center md:text-left">User Management</h1>
+            <p className="text-zinc-400 text-lg text-center md:text-left">Manage system users and permissions</p>
           </div>
 
           <div className="mt-6 md:mt-0">
@@ -280,7 +280,7 @@ export default function AdminPage() {
         </div>
 
         {/* Main Content */}
-        <div className="bg-zinc-900 rounded-3xl border border-zinc-800 overflow-hidden shadow-2xl mb-10">
+        <div className="bg-zinc-900 rounded-3xl border border-zinc-800 overflow-hidden shadow-2xl mb-10 mx-auto md:mx-0">
           {/* Card Header */}
           <div className="p-6 border-b border-zinc-800 flex flex-col md:flex-row md:items-center justify-between gap-4">
             <div className="flex items-center">
